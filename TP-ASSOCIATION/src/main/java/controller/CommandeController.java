@@ -46,7 +46,7 @@ public class CommandeController extends HttpServlet {
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("test", new Integer(2));
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher("/jsp/liste_commande.jsp");
+		rd = getServletContext().getRequestDispatcher("/jsp/core/liste_commande.jsp");
 		rd.forward(request, response);
 	}
 

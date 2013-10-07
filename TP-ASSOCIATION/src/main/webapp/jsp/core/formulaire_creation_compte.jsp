@@ -9,7 +9,7 @@
 <body>
 	Affichage de l'attribut passé en paramètre : ${test}
 	<h1>Enregistrez-vous</h1>
-	<form class="form-horizontal" role="form" onsubmit="return verifierFormulaire()"  method="post">
+	<form class="form-horizontal" role="form" onsubmit="return verifierFormulaire()" method="post">
 		<div class="form-group">
 			<label for="identifiant" class="col-lg-1 control-label">Identifiant</label>
 			<div class="col-lg-5">

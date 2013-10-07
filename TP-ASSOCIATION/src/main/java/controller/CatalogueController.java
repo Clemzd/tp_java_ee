@@ -46,7 +46,7 @@ public class CatalogueController extends HttpServlet {
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("test", new Integer(2));
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher("/jsp/liste_catalogue.jsp");
+		rd = getServletContext().getRequestDispatcher("/jsp/core/liste_catalogue.jsp");
 		rd.forward(request, response);
 	}
 

@@ -46,7 +46,7 @@ public class LoginController extends HttpServlet {
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("test", new Integer(2));
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher("/jsp/login.jsp");
+		rd = getServletContext().getRequestDispatcher("/jsp/core/login.jsp");
 		rd.forward(request, response);
 	}
 
