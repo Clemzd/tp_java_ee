@@ -20,7 +20,7 @@
 		<div class="form-group">
 			<label for="mot_de_passe" class="col-lg-2 control-label">Mot
 				de passe</label>
-			<div class="col-lg-10">
+			<div class="col-lg-5">
 				<input type="mot_de_passe" class="form-control" id="mot_de_passe"
 					placeholder="Mot de passe">
 			</div>
