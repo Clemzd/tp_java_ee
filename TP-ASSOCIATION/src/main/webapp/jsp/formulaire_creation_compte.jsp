@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="css/bootstrap.css" rel="stylesheet" media="screen">
-<title>Insert title here</title>
+<title>Enregistrez-vous</title>
 </head>
 <body>
 	<h1>Enregistrez-vous</h1>
