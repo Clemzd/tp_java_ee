@@ -1,7 +1,7 @@
-Mon Oct 07 17:54:23 CEST 2013 : Apache Derby Serveur réseau - 10.9.1.0 - (1344872) démarré et prêt à accepter les connexions sur le port 1527
+Tue Oct 08 22:08:13 CEST 2013 : Apache Derby Serveur réseau - 10.9.1.0 - (1344872) démarré et prêt à accepter les connexions sur le port 1527
 ----------------------------------------------------------------
-Mon Oct 07 17:54:34 CEST 2013:
-Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872) : instance a816c00e-0141-93a0-60a4-ffffb925d7fd 
+Tue Oct 08 22:08:17 CEST 2013:
+Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872) : instance a816c00e-0141-99af-20b5-ffffb925d7fd 
 dans le répertoire de base de données C:\Users\Clément\git\tp_java_ee\TP-ASSOCIATION\database\BookstoreDB_derby_v2\bin\association  avec le chargeur de classe sun.misc.Launcher$AppClassLoader@76bcfa38
 
 java.vendor=Oracle Corporation
