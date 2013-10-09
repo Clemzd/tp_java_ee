@@ -3,6 +3,8 @@
     
 	<persistence-unit name="derby-bookstore" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>emn.association.bean.Article</class>
+		<class>emn.association.bean.Adherent</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
 			<property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.ClientDriver"/>
