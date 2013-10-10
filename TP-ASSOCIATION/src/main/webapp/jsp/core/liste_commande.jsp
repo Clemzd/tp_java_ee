@@ -24,16 +24,18 @@
 				<th>Code</th>
 				<th>Nom</th>
 				<th>Prix</th>
+				<th>Stock</th>
 				<th>Quantité</th>
 				<th></th>
 			</tr>
 		</thead>
-			<c:forEach var="article" items="${panier}">
+			<c:forEach var="articlePanier" items="${panier}">
 				<tr>
-					<td>${article.code }</td>
-					<td>${article.nom }</td>
-					<td>${article.prix }</td>
-					<td>${article.quantite }</td>
+					<td>${articlePanier.article.code }</td>
+					<td>${articlePanier.article.nom }</td>
+					<td>${articlePanier.article.prix }</td>
+					<td>${articlePanier.article.stock}</td>
+					<td>${articlePanier.quantite }</td>
 				</tr>
 			</c:forEach>
 </body>
