@@ -1,24 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@ include file="../head/head.jsp" %>
+<%@ include file="../common/head.jsp"%>
 <title>Commande</title>
 </head>
 <body>
-	<nav class="navbar navbar-default" role="navigation">
-		<div class="collapse navbar-collapse navbar-ex1-collapse">
-	          <ul class="nav navbar-nav">
-	            <li class="active"><a href="#">Accueil</a></li>
-	            <li><a href="Catalogue">Articles</a></li>
-	            <li><a href="Commande">Commande</a></li>
-	          </ul>
-	        </div>
-		<div>
-	</nav>
+	<%@ include file="../common/navbar.jsp"%>
 	<h1>Commande</h1>
-			<table class="table">
+	<table class="table">
 		<thead>
 			<tr>
 				<th>Code</th>
@@ -29,6 +19,7 @@
 				<th></th>
 			</tr>
 		</thead>
+		<tbody>
 			<c:forEach var="articlePanier" items="${panier}">
 				<tr>
 					<td>${articlePanier.article.code }</td>
@@ -38,5 +29,7 @@
 					<td>${articlePanier.quantite }</td>
 				</tr>
 			</c:forEach>
+		</tbody>
+	</table>
 </body>
 </html>

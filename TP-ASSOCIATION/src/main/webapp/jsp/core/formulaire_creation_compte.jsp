@@ -3,10 +3,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<%@ include file="../head/head.jsp"%>
+<%@ include file="../common/head.jsp"%>
 <title>Enregistrez-vous</title>
 </head>
 <body>
+	<%@ include file="../common/navbar.jsp"%>
 	<h1>Enregistrez-vous</h1>
 	<c:if test="${not empty erreur}">
 		<div class="alert alert-danger">${erreur }</div>	
