@@ -8,25 +8,27 @@
 <title>Accueil</title>
 </head>
 <body>
-	<div class="collapse navbar-collapse">
+<nav class="navbar navbar-default" role="navigation">
+	<div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Accueil</a></li>
-            <li><a href="liste_catalogue.jsp">Articles</a></li>
-            <li><a href="liste_commande.jsp">Commande</a></li>
+            <li><a href="Catalogue">Articles</a></li>
+            <li><a href="Commande">Commande</a></li>
           </ul>
         </div>
 	<div>
-		<h1>Bienvenue sur le site des adhÃ©rents de l'association.</h1>
+</nav>
+		<h1>Bienvenue sur le site des adhérents de l'association.</h1>
 	</div>
 	<div class="nav nav-pills nav-stacked">
 		<ul>
 			<li>
-				<a href="liste_catalogue.jsp">
+				<a href="Catalogue">
 				Consulter les articles disponibles.
 				</a>
 			</li>
 			<li>
-				<a href="liste_commande.jsp">
+				<a href="Commande">
 				Consulter votre commande.
 				</a>
 			</li>
