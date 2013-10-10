@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import emn.association.bean.Adherent;
 import emn.association.persistence.PersistenceServiceProvider;
@@ -43,6 +44,8 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
+		
+		HttpSession session = request.getSession();
 
 		String id = request.getParameter("id");
 		String mdp = request.getParameter("mdp");
@@ -53,6 +56,9 @@ public class LoginController extends HttpServlet {
 			Adherent adherent = service.load(id);
 
 			if (adherent != null && mdp != null && mdp.equals(adherent.getMotdepasse())) {
+				// Stockage du nom de l'adherent s'etant connecte
+				session.setAttribute("adherent", adherent.getPrenom());
+
 				rd = getServletContext().getRequestDispatcher("/jsp/core/accueil.jsp");
 				rd.forward(request, response);
 			} else {
