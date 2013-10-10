@@ -70,7 +70,7 @@ public class CommandeController extends HttpServlet {
 				// On recherche si l'article existe
 				for (ArticlePanier article : panier) {
 					// Si oui on met à jour la quantité
-					if (nouvArt.equals(article.getArticle())) {
+					if (nouvArt.getCode().equals(article.getArticle().getCode())) {
 						article.setQuantite(article.getQuantite() + 1);
 						existe = true;
 					}
