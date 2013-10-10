@@ -3,7 +3,6 @@
 <html>
 <head>
 <%@ include file="../head/head.jsp"%>
-<script src="../../js/formulaire_creation_compte.js"></script>
 <title>Enregistrez-vous</title>
 </head>
 <body>
@@ -34,7 +33,7 @@
 		<div class="form-group">
 			<label for="nom_famille" class="col-lg-1 control-label">Nom de famille</label>
 			<div class="col-lg-5">
-				<input type="text" class="form-control" id="nom_famille" name="nom_famile" placeholder="Nom de famille">
+				<input type="text" class="form-control" id="nom_famille" name="nom_famille" placeholder="Nom de famille">
 			</div>
 			<p style="color:red">*</p>
 		</div>
