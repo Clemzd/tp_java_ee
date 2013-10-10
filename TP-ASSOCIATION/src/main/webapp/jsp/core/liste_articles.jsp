@@ -7,6 +7,16 @@
 <title>Articles</title>
 </head>
 <body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+	          <ul class="nav navbar-nav">
+	            <li class="active"><a href="#">Accueil</a></li>
+	            <li><a href="Catalogue">Articles</a></li>
+	            <li><a href="Commande">Commande</a></li>
+	          </ul>
+	        </div>
+		<div>
+	</nav>
 	<h1>Catalogue des articles</h1>
 	<table class="table">
 		<thead>
@@ -25,7 +35,7 @@
 					<td>${article.nom }</td>
 					<td>${article.prix }</td>
 					<td>${article.stock }</td>
-					<td><a href="">Commandez</a>
+					<td><a href="">Commander</a>
 				</tr>
 			</c:forEach>
 		</tbody>

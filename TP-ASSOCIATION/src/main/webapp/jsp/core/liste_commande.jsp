@@ -4,9 +4,27 @@
 <html>
 <head>
 <%@ include file="../head/head.jsp" %>
-<title>Enregistrez-vous</title>
+<title>Commande</title>
 </head>
 <body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+	          <ul class="nav navbar-nav">
+	            <li class="active"><a href="#">Accueil</a></li>
+	            <li><a href="Catalogue">Articles</a></li>
+	            <li><a href="Commande">Commande</a></li>
+	          </ul>
+	        </div>
+		<div>
+	</nav>
 	<h1>Commande</h1>
+			<c:forEach var="article" items="${panier}">
+				<tr>
+					<td>${article.code }</td>
+					<td>${article.nom }</td>
+					<td>${article.prix }</td>
+					<td>${article.stock }</td>
+				</tr>
+			</c:forEach>
 </body>
 </html>
