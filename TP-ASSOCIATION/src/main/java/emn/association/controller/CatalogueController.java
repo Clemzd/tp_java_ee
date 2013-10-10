@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import emn.association.persistence.PersistenceServiceProvider;
 import emn.association.persistence.services.ArticlePersistence;
@@ -47,8 +48,9 @@ public class CatalogueController extends HttpServlet {
 	 *      response)
 	 */
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		ArticlePersistence service = PersistenceServiceProvider.getService(ArticlePersistence.class);
-		request.setAttribute("articles", service.loadAll());
+		session.setAttribute("articles", service.loadAll());
 		RequestDispatcher rd;
 		rd = getServletContext().getRequestDispatcher("/jsp/core/liste_articles.jsp");
 		rd.forward(request, response);
