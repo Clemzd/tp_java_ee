@@ -18,12 +18,22 @@
 		<div>
 	</nav>
 	<h1>Commande</h1>
+			<table class="table">
+		<thead>
+			<tr>
+				<th>Code</th>
+				<th>Nom</th>
+				<th>Prix</th>
+				<th>Quantité</th>
+				<th></th>
+			</tr>
+		</thead>
 			<c:forEach var="article" items="${panier}">
 				<tr>
 					<td>${article.code }</td>
 					<td>${article.nom }</td>
 					<td>${article.prix }</td>
-					<td>${article.stock }</td>
+					<td>${article.quantite }</td>
 				</tr>
 			</c:forEach>
 </body>
