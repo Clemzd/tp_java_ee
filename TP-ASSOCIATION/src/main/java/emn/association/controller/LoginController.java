@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import emn.association.bean.Adherent;
+import emn.association.persistence.PersistenceServiceProvider;
+import emn.association.persistence.services.AdherentPersistence;
+
 /**
  * Servlet implementation class Login
  */
@@ -28,7 +32,9 @@ public class LoginController extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.process(request, response);
+		RequestDispatcher rd;
+		rd = getServletContext().getRequestDispatcher("/jsp/core/login.jsp");
+		rd.forward(request, response);
 	}
 
 	/**
@@ -36,18 +42,28 @@ public class LoginController extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.process(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("test", new Integer(2));
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher("/jsp/core/login.jsp");
-		rd.forward(request, response);
-	}
 
+		String id = request.getParameter("id");
+		String mdp = request.getParameter("mdp");
+
+		if (id != null && !id.isEmpty() && mdp != null && !mdp.isEmpty()) {
+			AdherentPersistence service = PersistenceServiceProvider.getService(AdherentPersistence.class);
+
+			Adherent adherent = service.load(id);
+
+			if (adherent != null && mdp != null && mdp.equals(adherent.getMotdepasse())) {
+				rd = getServletContext().getRequestDispatcher("/jsp/core/accueil.jsp");
+				rd.forward(request, response);
+			} else {
+				request.setAttribute("error", "Identifiant et/ou mot de passe incorrect.");
+				rd = getServletContext().getRequestDispatcher("/jsp/core/login.jsp");
+				rd.forward(request, response);
+			}
+		} else {
+			request.setAttribute("error", "Veuillez indiquer un identifiant et un mot de passe.");
+			rd = getServletContext().getRequestDispatcher("/jsp/core/login.jsp");
+			rd.forward(request, response);
+		}
+	}
 }
