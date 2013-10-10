@@ -42,18 +42,14 @@ public class CreationCompteController extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.process(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher rd;
+		rd = getServletContext().getRequestDispatcher("/jsp/core/formulaire_creation_compte.jsp");
 		// Erreur formulaire
-		if (verifierFormulaire(request)) {
-			RequestDispatcher rd;
-			rd = getServletContext().getRequestDispatcher("/jsp/core/formulaire_creation_compte.jsp");
+		if (verifierChampRempli(request)) {
+			request.setAttribute("erreur", "Veuillez remplir tous les champs obligatoires.");
+			rd.forward(request, response);
+		} else if (verifierMotDePasseIndentique(request)){
+			request.setAttribute("erreur", "Les mots de passes doivent Ãªtre identiques.");
 			rd.forward(request, response);
 		} else {
 			// Ajout en base
@@ -67,23 +63,16 @@ public class CreationCompteController extends HttpServlet {
 			adherent.setPrenom(request.getParameter("prenom"));
 			adherent.setRue(request.getParameter("adresse"));
 			adherent.setVille(request.getParameter("ville"));
-			serviceAdherent.insert(adherent);
 			serviceAdherent.save(adherent);
+			
+			// Redirection
+			rd = getServletContext().getRequestDispatcher("../Login");
+			rd.forward(request, response);
 		}
 	}
 
 	/**
-	 * Vérifie le formulaire.
-	 * 
-	 * @param request
-	 * @return
-	 */
-	private boolean verifierFormulaire(HttpServletRequest request) {
-		return verifierChampRempli(request) && verifierMotDePasseIndentique(request);
-	}
-
-	/**
-	 * Vérifie que les champs obligatoires ont bien été saisis.
+	 * VÃ©rifie que les champs obligatoires ont bien Ã©tÃ© saisis.
 	 * 
 	 * @param request
 	 * @return
@@ -95,7 +84,7 @@ public class CreationCompteController extends HttpServlet {
 	}
 
 	/**
-	 * Vérifie que les mots de passes sont identiques.
+	 * VÃ©rifie que les mots de passes sont identiques.s
 	 * 
 	 * @param request
 	 * @return

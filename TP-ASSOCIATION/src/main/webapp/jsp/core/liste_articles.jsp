@@ -15,6 +15,7 @@
 				<th>Nom</th>
 				<th>Prix</th>
 				<th>Stock</th>
+				<th></th>
 		</thead>
 		
 		<tbody>
@@ -24,6 +25,7 @@
 					<td>${article.nom }</td>
 					<td>${article.prix }</td>
 					<td>${article.stock }</td>
+					<td><a href="">Commandez</a>
 				</tr>
 			</c:forEach>
 		</tbody>

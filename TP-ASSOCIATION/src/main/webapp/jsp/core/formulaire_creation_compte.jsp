@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -6,9 +7,11 @@
 <title>Enregistrez-vous</title>
 </head>
 <body>
-	Affichage de l'attribut passé en paramètre : ${test}
 	<h1>Enregistrez-vous</h1>
-	<form class="form-horizontal" role="form" onsubmit="return verifierFormulaire()" method="post">
+	<c:if test="${not empty erreur}">
+		<div class="alert alert-danger">${erreur }</div>	
+	</c:if>
+	<form class="form-horizontal" role="form" method="post">
 		<div class="form-group">
 			<label for="identifiant" class="col-lg-1 control-label">Identifiant</label>
 			<div class="col-lg-5">
@@ -40,7 +43,7 @@
 		<div class="form-group">
 			<label for="prenom" class="col-lg-1 control-label">Prenom</label>
 			<div class="col-lg-5">
-				<input type="prenom" class="form-control" id="prenom" name="prenom" placeholder="Prenom">
+				<input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom">
 			</div>
 			<p style="color:red">*</p>
 		</div>
