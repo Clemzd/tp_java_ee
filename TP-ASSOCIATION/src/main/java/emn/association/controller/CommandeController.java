@@ -58,28 +58,33 @@ public class CommandeController extends HttpServlet {
 		RequestDispatcher rd;
 		rd = getServletContext().getRequestDispatcher("/jsp/core/liste_commande.jsp");
 		HttpSession session = request.getSession();
-		Article nouvArt = serviceArticle.load(request.getParameter("article.code"));
 		
-		ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
-		panier = (ArrayList<ArticlePanier>) session.getAttribute("panier");
-		if(panier != null){
-			boolean existe = false;
-			// On recherche si l'article existe
-			for (ArticlePanier article : panier) {
-				//Si oui on met à jour la quantité
-				if(nouvArt.equals(article.getArticle())){
-					article.setQuantite(article.getQuantite() + 1);
-					existe = true;
+		String id = request.getParameter("article.code");
+		if (id != null && !id.isEmpty()) {
+			Article nouvArt = serviceArticle.load(request.getParameter("article.code"));
+
+			ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
+			panier = (ArrayList<ArticlePanier>) session.getAttribute("panier");
+			if (panier != null) {
+				boolean existe = false;
+				// On recherche si l'article existe
+				for (ArticlePanier article : panier) {
+					// Si oui on met à jour la quantité
+					if (nouvArt.equals(article.getArticle())) {
+						article.setQuantite(article.getQuantite() + 1);
+						existe = true;
+					}
 				}
+				// Sinon on l'ajoute
+				if (!existe) {
+					panier.add(new ArticlePanier(nouvArt, 1));
+				}
+			} else {
+				// On crée le panier en lui ajoutant l'article
+				panier = new ArrayList<ArticlePanier>();
+				panier.add(new ArticlePanier(nouvArt, 1));
+				session.setAttribute("panier", panier);
 			}
-			//Sinon on l'ajoute
-			if(!existe){
-				panier.add(new ArticlePanier(nouvArt,1));
-			}
-		}else{
-			// On crée le panier en lui ajoutant l'article
-			panier.add(new ArticlePanier(nouvArt,1));
-			session.setAttribute("panier", panier);
 		}
 		rd.forward(request, response);
 	}

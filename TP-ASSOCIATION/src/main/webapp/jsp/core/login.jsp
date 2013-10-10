@@ -18,9 +18,9 @@
 
 	<form class="form-horizontal" role="form" method="post">
 		<div class="form-group">
-			<label for="inputEmail1" class="col-lg-2 control-label">Identifiant</label>
+			<label for="intputIdentifiant" class="col-lg-2 control-label">Identifiant</label>
 			<div class="col-lg-10">
-				<input type="email" class="form-control" id="id" name="id" placeholder="Identifiant">
+				<input type="text" class="form-control" id="id" name="id" placeholder="Identifiant">
 			</div>
 		</div>
 		<div class="form-group">
