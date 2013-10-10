@@ -20,13 +20,13 @@
 		<div class="form-group">
 			<label for="inputEmail1" class="col-lg-2 control-label">Identifiant</label>
 			<div class="col-lg-10">
-				<input type="email" class="form-control" id="id" name="id" placeholder="Email">
+				<input type="email" class="form-control" id="id" name="id" placeholder="Identifiant">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputPassword1" class="col-lg-2 control-label">Mot de passe</label>
 			<div class="col-lg-10">
-				<input type="password" class="form-control" id="mdp" name="mdp" placeholder="Password">
+				<input type="password" class="form-control" id="mdp" name="mdp" placeholder="Mot de passe">
 			</div>
 		</div>
 		<div class="form-group">
