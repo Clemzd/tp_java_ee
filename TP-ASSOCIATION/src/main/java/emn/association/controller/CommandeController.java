@@ -16,6 +16,8 @@ import org.apache.commons.collections.CollectionUtils;
 
 import emn.association.bean.Article;
 import emn.association.bean.ArticlePanier;
+import emn.association.persistence.PersistenceServiceProvider;
+import emn.association.persistence.services.ArticlePersistence;
 
 /**
  * Servlet implementation class Accueil
@@ -52,12 +54,13 @@ public class CommandeController extends HttpServlet {
 	 *      response)
 	 */
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("test", new Integer(2));
+		ArticlePersistence serviceArticle = PersistenceServiceProvider.getService(ArticlePersistence.class);
 		RequestDispatcher rd;
 		rd = getServletContext().getRequestDispatcher("/jsp/core/liste_commande.jsp");
 		HttpSession session = request.getSession();
-		Article nouvArt = (Article) request.getAttribute("article");
-		ArrayList<ArticlePanier> panier ;
+		Article nouvArt = serviceArticle.load(request.getParameter("article.code"));
+		
+		ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
 		panier = (ArrayList<ArticlePanier>) session.getAttribute("panier");
 		if(panier != null){
 			boolean existe = false;

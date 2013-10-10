@@ -26,7 +26,7 @@
 					<td>${article.nom }</td>
 					<td>${article.prix }</td>
 					<td>${article.stock }</td>
-					<td><a href="">Commander</a>
+					<td><a href="Commande?article.code=${article.code }">Commander</a>
 				</tr>
 			</c:forEach>
 		</tbody>
