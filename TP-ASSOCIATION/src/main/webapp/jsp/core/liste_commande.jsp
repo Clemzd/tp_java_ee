@@ -8,29 +8,37 @@
 </head>
 <body>
 	<%@ include file="../common/navbar.jsp"%>
+	<script>
+		$("li").attr("class","");
+		$("#commande").attr("class","active");
+	</script>
 	<h1>Commande</h1>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Code</th>
 				<th>Nom</th>
-				<th>Prix</th>
+				<th>Prix unitaire</th>
 				<th>Stock</th>
 				<th>Quantité</th>
-				<th></th>
+				<th>Somme des prix</th>
 			</tr>
 		</thead>
 		<tbody>
+			<c:set var="total" value="0" />
 			<c:forEach var="articlePanier" items="${panier}">
 				<tr>
 					<td>${articlePanier.article.code }</td>
 					<td>${articlePanier.article.nom }</td>
-					<td>${articlePanier.article.prix }</td>
+					<td>${articlePanier.article.prix}</td>
 					<td>${articlePanier.article.stock}</td>
 					<td>${articlePanier.quantite }</td>
+					<td>${articlePanier.article.prix * articlePanier.quantite}</td>
+					<c:set var="total" value="${total + articlePanier.article.prix * articlePanier.quantite}" />
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	<div class="alert alert-success">Somme des prix : ${total}</div>
 </body>
 </html>

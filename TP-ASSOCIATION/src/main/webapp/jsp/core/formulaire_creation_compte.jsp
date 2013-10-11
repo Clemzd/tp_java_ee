@@ -7,7 +7,6 @@
 <title>Enregistrez-vous</title>
 </head>
 <body>
-	<%@ include file="../common/navbar.jsp"%>
 	<h1>Enregistrez-vous</h1>
 	<c:if test="${not empty erreur}">
 		<div class="alert alert-danger">${erreur }</div>	

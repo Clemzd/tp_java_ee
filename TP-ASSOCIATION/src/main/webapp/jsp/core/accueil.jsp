@@ -7,7 +7,11 @@
 <title>Accueil</title>
 </head>
 <body>
-<%@ include file="../common/navbar.jsp"%>
+	<%@ include file="../common/navbar.jsp"%>
+	<script>
+		$("li").attr("class", "");
+		$("#accueil").attr("class", "active");
+	</script>
 	<h1>Bienvenue sur le site des adhérents de l'association.</h1>
 	<div class="nav nav-pills nav-stacked">
 		<ul>

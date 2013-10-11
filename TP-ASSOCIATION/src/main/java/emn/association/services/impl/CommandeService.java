@@ -10,17 +10,22 @@ import emn.association.services.interfaces.ICommandeService;
 
 public class CommandeService implements ICommandeService {
 
+	private ArticlePersistence serviceArticle;
+	
+	public CommandeService(){
+		serviceArticle = PersistenceServiceProvider.getService(ArticlePersistence.class);
+	}
+	
 	@Override
 	public Article getArticleFromCode(String code) {
 		
-		ArticlePersistence serviceArticle = PersistenceServiceProvider.getService(ArticlePersistence.class);
 		Article nouvArt = serviceArticle.load(code);
 
 		return nouvArt;
 	}
 
 	@Override
-	public void miseAJourPanier(List<ArticlePanier> panier, Article nouvelArticle) {
+	public void miseAJourPanier(List<ArticlePanier> panier, Article nouvelArticle) {		
 		boolean existe = false;
 		// On recherche si l'article existe
 		for (ArticlePanier article : panier) {

@@ -13,8 +13,8 @@
 </head>
 <body>
 	</tbody>
-	<c:if test="${not empty error}">
-		<div class="alert alert-danger">${error}</div>
+	<c:if test="${not empty erreur}">
+		<div class="alert alert-danger">${erreur}</div>
 	</c:if>
 
 	<div class="container">
