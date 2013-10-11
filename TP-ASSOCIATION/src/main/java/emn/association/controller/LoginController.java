@@ -48,18 +48,17 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
-		
+		ILoginService loginService = new LoginService();		
 		HttpSession session = request.getSession();
 
 		String id = request.getParameter(ConstantUtils.ATTRIBUTE_ID);
 		String mdp = request.getParameter(ConstantUtils.ATTRIBUTE_PWD);
 
-		if (id != null && !id.isEmpty() && mdp != null && !mdp.isEmpty()) {
+		if (loginService.champsValide(id, mdp)) {
 			
-			ILoginService loginService = new LoginService();
 			Adherent adherent = loginService.getAdherentFromId(id);
 			
-			if (adherent != null && mdp != null && mdp.equals(adherent.getMotdepasse())) {
+			if (loginService.motDePasseOK(adherent, mdp)) {
 				// Stockage du nom de l'adherent s'etant connecte
 				session.setAttribute(ConstantUtils.ATTRIBUTE_ADHERENT, adherent.getIdentifiant());
 
