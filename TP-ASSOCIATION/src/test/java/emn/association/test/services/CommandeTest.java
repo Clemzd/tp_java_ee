@@ -9,7 +9,6 @@ import org.junit.Test;
 import emn.association.bean.Article;
 import emn.association.bean.ArticlePanier;
 import emn.association.mock.ArticleMock;
-import emn.association.mock.ArticlePanierMock;
 import emn.association.services.impl.CommandeService;
 
 public class CommandeTest {
