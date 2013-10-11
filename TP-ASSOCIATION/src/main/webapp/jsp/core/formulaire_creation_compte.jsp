@@ -16,60 +16,61 @@
 		<div class="form-group">
 			<label for="identifiant" class="col-lg-1 control-label">Identifiant</label>
 			<div class="col-lg-5">
-				<input type="text" class="form-control" id="identifiant" name="identifiant" placeholder="Identifiant">
+				<input type="text" class="form-control" id="identifiant" name="identifiant" placeholder="Identifiant" value="${param.identifiant}">
 			</div>
 			<p style="color:red">*</p>
 		</div>
 		<div class="form-group">
 			<label for="mot_de_passe" class="col-lg-1 control-label">Mot de passe</label>
 			<div class="col-lg-5">
-				<input type="password" class="form-control" id="mot_de_passe" name="mot_de_passe" placeholder="Mot de passe">
+				<input type="password" class="form-control" id="mot_de_passe" name="mot_de_passe" placeholder="Mot de passe" value="${param.mot_de_passe}">
 			</div>
 			<p style="color:red">*</p>
 		</div>
 		<div class="form-group">
 			<label for="motDePasseConfirmation" class="col-lg-1 control-label">Mot de passe (confirmation)</label>
 			<div class="col-lg-5">
-				<input type="password" class="form-control" id="mot_de_passe_confirmation" name="mot_de_passe_confirmation" placeholder="Confirmation du mot de passe">
+				<input type="password" class="form-control" id="mot_de_passe_confirmation" name="mot_de_passe_confirmation" placeholder="Confirmation du mot de passe"
+				value="${param.mot_de_passe_confirmation}">
 			</div>
 			<p style="color:red">*</p>
 		</div>
 		<div class="form-group">
 			<label for="nom_famille" class="col-lg-1 control-label">Nom de famille</label>
 			<div class="col-lg-5">
-				<input type="text" class="form-control" id="nom_famille" name="nom_famille" placeholder="Nom de famille">
+				<input type="text" class="form-control" id="nom_famille" name="nom_famille" placeholder="Nom de famille" value="${param.nom_famille}">
 			</div>
 			<p style="color:red">*</p>
 		</div>
 		<div class="form-group">
 			<label for="prenom" class="col-lg-1 control-label">Prenom</label>
 			<div class="col-lg-5">
-				<input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom">
+				<input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prenom" value="${param.prenom}">
 			</div>
 			<p style="color:red">*</p>
 		</div>
 		<div class="form-group">
 			<label for="adresse" class="col-lg-1 control-label">Adresse (rue)</label>
 			<div class="col-lg-5">
-				<input type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse">
+				<input type="text" class="form-control" id="adresse" name="adresse" placeholder="Adresse" value="${param.adresse}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="codePostal" class="col-lg-1 control-label">Code Postal</label>
 			<div class="col-lg-5">
-				<input type="text" class="form-control" id="code_postal" name="code_postal" placeholder="Code postal">
+				<input type="text" class="form-control" id="code_postal" name="code_postal" placeholder="Code postal" value="${param.code_postal}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="ville" class="col-lg-1 control-label">Ville</label>
 			<div class="col-lg-5">
-				<input type="text" class="form-control" id="ville" name="ville" placeholder="Ville">
+				<input type="text" class="form-control" id="ville" name="ville" placeholder="Ville" value="${param.ville}">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="pays" class="col-lg-1 control-label">Pays</label>
 			<div class="col-lg-5">
-				<input type="text" class="form-control" id="pays" name="pays" placeholder="Pays">
+				<input type="text" class="form-control" id="pays" name="pays" placeholder="Pays" value="${param.pays}">
 			</div>
 		</div>
 		<div class="form-group">

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.validator.util.privilegedactions.GetConstructor;
+
 import emn.association.bean.Adherent;
 import emn.association.persistence.PersistenceServiceProvider;
 import emn.association.persistence.services.AdherentPersistence;
@@ -48,7 +50,7 @@ public class CreationCompteController extends HttpServlet {
 		if (verifierChampRempli(request)) {
 			request.setAttribute("erreur", "Veuillez remplir tous les champs obligatoires.");
 			rd.forward(request, response);
-		} else if (!verifierMotDePasseIndentique(request)){
+		} else if (!verifierMotDePasseIndentique(request)) {
 			request.setAttribute("erreur", "Les mots de passes doivent être identiques.");
 			rd.forward(request, response);
 		} else {
@@ -64,10 +66,10 @@ public class CreationCompteController extends HttpServlet {
 			adherent.setRue(request.getParameter("adresse"));
 			adherent.setVille(request.getParameter("ville"));
 			serviceAdherent.save(adherent);
-			
+
 			// Redirection
-			rd = getServletContext().getRequestDispatcher("../Login");
-			rd.forward(request, response);
+			response.sendRedirect(getServletContext().getContextPath() + "/Login");
+
 		}
 	}
 
