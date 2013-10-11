@@ -15,11 +15,13 @@ import emn.association.persistence.PersistenceServiceProvider;
 import emn.association.persistence.services.AdherentPersistence;
 import emn.association.services.impl.LoginService;
 import emn.association.services.interfaces.ILoginService;
+import emn.association.utils.ConstantUtils;
+import emn.association.utils.MessageUtils;
 
 /**
  * Servlet implementation class Login
  */
-@WebServlet("/Login")
+@WebServlet(urlPatterns = {"/Login"})
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -36,7 +38,7 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher("/jsp/core/login.jsp");
+		rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_LOGIN);
 		rd.forward(request, response);
 	}
 
@@ -49,31 +51,28 @@ public class LoginController extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 
-		String id = request.getParameter("id");
-		String mdp = request.getParameter("mdp");
+		String id = request.getParameter(ConstantUtils.ATTRIBUTE_ID);
+		String mdp = request.getParameter(ConstantUtils.ATTRIBUTE_PWD);
 
 		if (id != null && !id.isEmpty() && mdp != null && !mdp.isEmpty()) {
 			
 			ILoginService loginService = new LoginService();
 			Adherent adherent = loginService.getAdherentFromId(id);
 			
-//			AdherentPersistence service = PersistenceServiceProvider.getService(AdherentPersistence.class);
-//			Adherent adherent = service.load(id);
-
 			if (adherent != null && mdp != null && mdp.equals(adherent.getMotdepasse())) {
 				// Stockage du nom de l'adherent s'etant connecte
-				session.setAttribute("adherent", adherent.getPrenom());
+				session.setAttribute(ConstantUtils.ATTRIBUTE_ADHERENT, adherent.getPrenom());
 
-				rd = getServletContext().getRequestDispatcher("/jsp/core/accueil.jsp");
+				rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_ACCUEIL);
 				rd.forward(request, response);
 			} else {
-				request.setAttribute("error", "Identifiant et/ou mot de passe incorrect.");
-				rd = getServletContext().getRequestDispatcher("/jsp/core/login.jsp");
+				request.setAttribute(ConstantUtils.ATTRIBUTE_ERROR, MessageUtils.WRONG_ID_OR_PWD);
+				rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_LOGIN);
 				rd.forward(request, response);
 			}
 		} else {
-			request.setAttribute("error", "Veuillez indiquer un identifiant et un mot de passe.");
-			rd = getServletContext().getRequestDispatcher("/jsp/core/login.jsp");
+			request.setAttribute(ConstantUtils.ATTRIBUTE_ERROR, MessageUtils.NO_ID_OR_PWD);
+			rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_LOGIN);
 			rd.forward(request, response);
 		}
 	}
