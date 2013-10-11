@@ -48,7 +48,7 @@ public class CreationCompteController extends HttpServlet {
 		if (verifierChampRempli(request)) {
 			request.setAttribute("erreur", "Veuillez remplir tous les champs obligatoires.");
 			rd.forward(request, response);
-		} else if (verifierMotDePasseIndentique(request)){
+		} else if (!verifierMotDePasseIndentique(request)){
 			request.setAttribute("erreur", "Les mots de passes doivent être identiques.");
 			rd.forward(request, response);
 		} else {
