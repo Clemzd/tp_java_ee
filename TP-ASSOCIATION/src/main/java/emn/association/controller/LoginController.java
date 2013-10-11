@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 import emn.association.bean.Adherent;
 import emn.association.persistence.PersistenceServiceProvider;
 import emn.association.persistence.services.AdherentPersistence;
+import emn.association.services.impl.LoginService;
+import emn.association.services.interfaces.ILoginService;
 
 /**
  * Servlet implementation class Login
@@ -51,9 +53,12 @@ public class LoginController extends HttpServlet {
 		String mdp = request.getParameter("mdp");
 
 		if (id != null && !id.isEmpty() && mdp != null && !mdp.isEmpty()) {
-			AdherentPersistence service = PersistenceServiceProvider.getService(AdherentPersistence.class);
-
-			Adherent adherent = service.load(id);
+			
+			ILoginService loginService = new LoginService();
+			Adherent adherent = loginService.getAdherentFromId(id);
+			
+//			AdherentPersistence service = PersistenceServiceProvider.getService(AdherentPersistence.class);
+//			Adherent adherent = service.load(id);
 
 			if (adherent != null && mdp != null && mdp.equals(adherent.getMotdepasse())) {
 				// Stockage du nom de l'adherent s'etant connecte
