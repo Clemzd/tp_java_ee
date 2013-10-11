@@ -20,19 +20,19 @@ public class CommandeService implements ICommandeService {
 	}
 
 	@Override
-	public void updateBasket(List<ArticlePanier> panier, Article nouvArt) {
+	public void miseAJourPanier(List<ArticlePanier> panier, Article nouvelArticle) {
 		boolean existe = false;
 		// On recherche si l'article existe
 		for (ArticlePanier article : panier) {
 			// Si oui on met à jour la quantité
-			if (nouvArt.equals(article.getArticle())) {
+			if (nouvelArticle.equals(article.getArticle())) {
 				article.setQuantite(article.getQuantite() + 1);
 				existe = true;
 			}
 		}
 		// Sinon on l'ajoute
 		if (!existe) {
-			panier.add(new ArticlePanier(nouvArt, 1));
+			panier.add(new ArticlePanier(nouvelArticle, 1));
 		}		
 	}
 

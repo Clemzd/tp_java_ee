@@ -18,6 +18,9 @@ import emn.association.bean.Article;
 import emn.association.bean.ArticlePanier;
 import emn.association.persistence.PersistenceServiceProvider;
 import emn.association.persistence.services.ArticlePersistence;
+import emn.association.services.impl.CommandeService;
+import emn.association.services.interfaces.ICommandeService;
+import emn.association.services.interfaces.ICreationCompteService;
 
 /**
  * Servlet implementation class Accueil
@@ -26,12 +29,15 @@ import emn.association.persistence.services.ArticlePersistence;
 public class CommandeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private ICommandeService serviceCommande;
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public CommandeController() {
-		super();
+		this.serviceCommande = new CommandeService();
 	}
+	
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -66,19 +72,7 @@ public class CommandeController extends HttpServlet {
 			ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
 			panier = (ArrayList<ArticlePanier>) session.getAttribute("panier");
 			if (panier != null) {
-				boolean existe = false;
-				// On recherche si l'article existe
-				for (ArticlePanier article : panier) {
-					// Si oui on met à jour la quantité
-					if (nouvArt.equals(article.getArticle())) {
-						article.setQuantite(article.getQuantite() + 1);
-						existe = true;
-					}
-				}
-				// Sinon on l'ajoute
-				if (!existe) {
-					panier.add(new ArticlePanier(nouvArt, 1));
-				}
+				serviceCommande.miseAJourPanier(panier, nouvArt);
 			} else {
 				// On crée le panier en lui ajoutant l'article
 				panier = new ArrayList<ArticlePanier>();

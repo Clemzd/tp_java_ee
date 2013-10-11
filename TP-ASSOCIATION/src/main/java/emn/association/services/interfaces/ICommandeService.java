@@ -8,6 +8,6 @@ import emn.association.bean.ArticlePanier;
 public interface ICommandeService {
 	
 	public Article getArticleFromCode(String code);
-	public void updateBasket(List<ArticlePanier> panier, Article nouvArt);
+	void miseAJourPanier(List<ArticlePanier> panier, Article nouvelArticle);
 
 }
