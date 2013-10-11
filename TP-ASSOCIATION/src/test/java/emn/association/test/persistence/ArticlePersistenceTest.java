@@ -30,10 +30,6 @@ public class ArticlePersistenceTest
 		System.out.println("Test Article persistence : delete + load ..." );
 		
 		ArticlePersistence service = PersistenceServiceProvider.getService(ArticlePersistence.class);
-		List<Article> articles = service.loadAll();
-		for(Article article: articles){
-			System.out.println(article.toString());
-		}
 		ArticleMock mock = new ArticleMock();
 		
 		// TODO : set primary key values here 

@@ -9,7 +9,7 @@ public class CreationCompteService implements ICreationCompteService {
 	 */
 	@Override
 	public boolean verifierChampRempli(String identifiant, String pass, String passConfirmation, String nomFamille, String prenom) {
-		return (identifiant.isEmpty() || pass.isEmpty() || passConfirmation.isEmpty() || nomFamille.isEmpty() || prenom.isEmpty());
+		return (!identifiant.isEmpty() && !pass.isEmpty() && !passConfirmation.isEmpty() && !nomFamille.isEmpty() && !prenom.isEmpty());
 	}
 
 	/**

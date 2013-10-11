@@ -51,7 +51,7 @@ public class CreationCompteController extends HttpServlet {
 		RequestDispatcher rd;
 		rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_FORM);
 		// Erreur formulaire
-		if (verifierChampRempli(request)) {
+		if (!verifierChampRempli(request)) {
 			request.setAttribute(ConstantUtils.ATTRIBUT_ERREUR, MessageUtils.CHAMP_OBLIGATOIRES);
 			rd.forward(request, response);
 		} else if (!verifierMotDePasseIndentique(request)) {
