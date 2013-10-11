@@ -8,6 +8,40 @@ package emn.association.bean;
  */
 public class ArticlePanier {
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((article == null) ? 0 : article.hashCode());
+		result = prime * result + quantite;
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ArticlePanier other = (ArticlePanier) obj;
+		if (article == null) {
+			if (other.article != null)
+				return false;
+		} else if (!article.equals(other.article))
+			return false;
+		if (quantite != other.quantite)
+			return false;
+		return true;
+	}
+
 	/**
 	 * Le type d'article
 	 */
