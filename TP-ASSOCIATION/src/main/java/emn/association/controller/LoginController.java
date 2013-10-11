@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import emn.association.bean.Adherent;
-import emn.association.persistence.PersistenceServiceProvider;
-import emn.association.persistence.services.AdherentPersistence;
 import emn.association.services.impl.LoginService;
 import emn.association.services.interfaces.ILoginService;
 import emn.association.utils.ConstantUtils;
