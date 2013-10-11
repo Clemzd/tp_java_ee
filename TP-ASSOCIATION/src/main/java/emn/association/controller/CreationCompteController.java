@@ -14,6 +14,8 @@ import emn.association.persistence.PersistenceServiceProvider;
 import emn.association.persistence.services.AdherentPersistence;
 import emn.association.services.impl.CreationCompteService;
 import emn.association.services.interfaces.ICreationCompteService;
+import emn.association.utils.ConstantUtils;
+import emn.association.utils.MessageUtils;
 
 /**
  * Servlet implementation class CreationCompte
@@ -37,7 +39,7 @@ public class CreationCompteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher("/jsp/core/formulaire_creation_compte.jsp");
+		rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_FORM);
 		rd.forward(request, response);
 	}
 
@@ -47,30 +49,30 @@ public class CreationCompteController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher("/jsp/core/formulaire_creation_compte.jsp");
+		rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_FORM);
 		// Erreur formulaire
 		if (verifierChampRempli(request)) {
-			request.setAttribute("erreur", "Veuillez remplir tous les champs obligatoires.");
+			request.setAttribute(ConstantUtils.ATTRIBUT_ERREUR, MessageUtils.CHAMP_OBLIGATOIRES);
 			rd.forward(request, response);
 		} else if (!verifierMotDePasseIndentique(request)) {
-			request.setAttribute("erreur", "Les mots de passes doivent être identiques.");
+			request.setAttribute(ConstantUtils.ATTRIBUT_ERREUR, MessageUtils.MOTS_DE_PASSE_DIFFERENT);
 			rd.forward(request, response);
 		} else {
 			// Ajout en base
 			AdherentPersistence serviceAdherent = PersistenceServiceProvider.getService(AdherentPersistence.class);
 			Adherent adherent = new Adherent();
-			adherent.setIdentifiant(request.getParameter("identifiant"));
-			adherent.setCodepostal(request.getParameter("code_postal"));
-			adherent.setMotdepasse(request.getParameter("mot_de_passe"));
-			adherent.setNomdefamille(request.getParameter("nom_famille"));
-			adherent.setPays(request.getParameter("pays"));
-			adherent.setPrenom(request.getParameter("prenom"));
-			adherent.setRue(request.getParameter("adresse"));
-			adherent.setVille(request.getParameter("ville"));
+			adherent.setIdentifiant(request.getParameter(ConstantUtils.ATTRIBUT_IDENTIFIANT));
+			adherent.setCodepostal(request.getParameter(ConstantUtils.ATTRIBUT_CODE_POSTAL));
+			adherent.setMotdepasse(request.getParameter(ConstantUtils.ATTRIBUT_PASSE));
+			adherent.setNomdefamille(request.getParameter(ConstantUtils.ATTRIBUT_NOM_FAMILLE));
+			adherent.setPays(request.getParameter(ConstantUtils.ATTRIBUT_PAYS));
+			adherent.setPrenom(request.getParameter(ConstantUtils.ATTRIBUT_PRENOM));
+			adherent.setRue(request.getParameter(ConstantUtils.ATTRIBUT_ADRESSE));
+			adherent.setVille(request.getParameter(ConstantUtils.ATTRIBUT_VILLE));
 			serviceAdherent.save(adherent);
 
 			// Redirection
-			response.sendRedirect(getServletContext().getContextPath() + "/Login");
+			response.sendRedirect(getServletContext().getContextPath() + ConstantUtils.PATH_TO_LOGIN_REDIRECT);
 
 		}
 	}
@@ -82,8 +84,9 @@ public class CreationCompteController extends HttpServlet {
 	 * @return
 	 */
 	private boolean verifierChampRempli(HttpServletRequest request) {
-		return this.serviceCreationCompte.verifierChampRempli(request.getParameter("identifiant"), request.getParameter("mot_de_passe"),
-				request.getParameter("mot_de_passe_confirmation"), request.getParameter("nom_famille"), request.getParameter("prenom"));
+		return this.serviceCreationCompte.verifierChampRempli(request.getParameter(ConstantUtils.ATTRIBUT_IDENTIFIANT),
+				request.getParameter(ConstantUtils.ATTRIBUT_PASSE), request.getParameter(ConstantUtils.ATTRIBUT_PASSE_CONFIRMATION),
+				request.getParameter(ConstantUtils.ATTRIBUT_NOM_FAMILLE), request.getParameter(ConstantUtils.ATTRIBUT_PRENOM));
 	}
 
 	/**
@@ -93,6 +96,7 @@ public class CreationCompteController extends HttpServlet {
 	 * @return
 	 */
 	private boolean verifierMotDePasseIndentique(HttpServletRequest request) {
-		return this.serviceCreationCompte.verifierMotDePasseIdentique(request.getParameter("mot_de_passe"), request.getParameter("mot_de_passe_confirmation"));
+		return this.serviceCreationCompte.verifierMotDePasseIdentique(request.getParameter(ConstantUtils.ATTRIBUT_PASSE),
+				request.getParameter(ConstantUtils.ATTRIBUT_PASSE_CONFIRMATION));
 	}
 }

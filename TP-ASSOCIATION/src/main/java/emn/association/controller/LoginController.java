@@ -51,8 +51,8 @@ public class LoginController extends HttpServlet {
 		ILoginService loginService = new LoginService();		
 		HttpSession session = request.getSession();
 
-		String id = request.getParameter(ConstantUtils.ATTRIBUTE_ID);
-		String mdp = request.getParameter(ConstantUtils.ATTRIBUTE_PWD);
+		String id = request.getParameter(ConstantUtils.ATTRIBUT_ID);
+		String mdp = request.getParameter(ConstantUtils.ATTRIBUT_PWD);
 
 		if (loginService.champsValide(id, mdp)) {
 			
@@ -60,17 +60,17 @@ public class LoginController extends HttpServlet {
 			
 			if (loginService.motDePasseOK(adherent, mdp)) {
 				// Stockage du nom de l'adherent s'etant connecte
-				session.setAttribute(ConstantUtils.ATTRIBUTE_ADHERENT, adherent.getIdentifiant());
+				session.setAttribute(ConstantUtils.ATTRIBUT_ADHERENT, adherent.getIdentifiant());
 
 				rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_ACCUEIL);
 				rd.forward(request, response);
 			} else {
-				request.setAttribute(ConstantUtils.ATTRIBUTE_ERROR, MessageUtils.WRONG_ID_OR_PWD);
+				request.setAttribute(ConstantUtils.ATTRIBUT_ERREUR, MessageUtils.WRONG_ID_OR_PWD);
 				rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_LOGIN);
 				rd.forward(request, response);
 			}
 		} else {
-			request.setAttribute(ConstantUtils.ATTRIBUTE_ERROR, MessageUtils.NO_ID_OR_PWD);
+			request.setAttribute(ConstantUtils.ATTRIBUT_ERREUR, MessageUtils.NO_ID_OR_PWD);
 			rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_LOGIN);
 			rd.forward(request, response);
 		}
