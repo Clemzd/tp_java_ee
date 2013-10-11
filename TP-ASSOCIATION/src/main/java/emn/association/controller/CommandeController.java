@@ -38,7 +38,6 @@ public class CommandeController extends HttpServlet {
 		this.serviceCommande = new CommandeService();
 	}
 	
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -72,6 +71,7 @@ public class CommandeController extends HttpServlet {
 			ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
 			panier = (ArrayList<ArticlePanier>) session.getAttribute("panier");
 			if (panier != null) {
+				//Si le panier est déjà créé on le met à jour
 				serviceCommande.miseAJourPanier(panier, nouvArt);
 			} else {
 				// On crée le panier en lui ajoutant l'article

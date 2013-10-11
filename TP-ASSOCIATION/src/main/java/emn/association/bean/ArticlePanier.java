@@ -8,7 +8,71 @@ package emn.association.bean;
  */
 public class ArticlePanier {
 
-	/* (non-Javadoc)
+	/**
+	 * Le type d'article
+	 */
+	private Article article;
+	
+	/**
+	 * la quantité d'article à commander
+	 */
+	private int quantite;
+
+	/**
+	 * @param article
+	 * @param quantite
+	 */
+	public ArticlePanier(Article article, int quantite) {
+		super();
+		this.article = article;
+		this.quantite = quantite;
+	}
+
+	public ArticlePanier() {
+		super();
+	}
+
+	/**
+	 * @return the article
+	 */
+	public Article getArticle() {
+		return article;
+	}
+
+	/**
+	 * @param article the article to set
+	 */
+	public void setArticle(Article article) {
+		this.article = article;
+	}
+
+	/**
+	 * @return the quantite
+	 */
+	public int getQuantite() {
+		return quantite;
+	}
+
+	/**
+	 * @param quantite the quantite to set
+	 */
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
+	
+	//----------------------------------------------------------------------
+    // toString METHOD
+    //----------------------------------------------------------------------
+    public String toString()
+    {
+        StringBuffer sb = new StringBuffer();
+        sb.append(article.toString()); 
+        sb.append("||"); 
+        sb.append(quantite);
+        return sb.toString(); 
+    }
+    
+    /* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -42,52 +106,5 @@ public class ArticlePanier {
 		return true;
 	}
 
-	/**
-	 * Le type d'article
-	 */
-	private Article article;
-	
-	/**
-	 * la quantité d'article à commander
-	 */
-	private int quantite;
-
-	/**
-	 * @param article
-	 * @param quantite
-	 */
-	public ArticlePanier(Article article, int quantite) {
-		super();
-		this.article = article;
-		this.quantite = quantite;
-	}
-
-	/**
-	 * @return the article
-	 */
-	public Article getArticle() {
-		return article;
-	}
-
-	/**
-	 * @param article the article to set
-	 */
-	public void setArticle(Article article) {
-		this.article = article;
-	}
-
-	/**
-	 * @return the quantite
-	 */
-	public int getQuantite() {
-		return quantite;
-	}
-
-	/**
-	 * @param quantite the quantite to set
-	 */
-	public void setQuantite(int quantite) {
-		this.quantite = quantite;
-	}
 	
 }
