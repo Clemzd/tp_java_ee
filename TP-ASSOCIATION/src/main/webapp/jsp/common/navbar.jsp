@@ -5,5 +5,7 @@
 			<li><a href="Catalogue">Articles</a></li>
 			<li><a href="Commande">Commande</a></li>
 		</ul>
-	</div>
+		<ul class="nav navbar-nav navbar-right">
+      <li><a>adherent : ${ adherent }</a></li>
+    	</ul>
 </nav>

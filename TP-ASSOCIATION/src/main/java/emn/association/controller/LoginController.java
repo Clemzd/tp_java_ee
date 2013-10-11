@@ -61,7 +61,7 @@ public class LoginController extends HttpServlet {
 			
 			if (adherent != null && mdp != null && mdp.equals(adherent.getMotdepasse())) {
 				// Stockage du nom de l'adherent s'etant connecte
-				session.setAttribute(ConstantUtils.ATTRIBUTE_ADHERENT, adherent.getPrenom());
+				session.setAttribute(ConstantUtils.ATTRIBUTE_ADHERENT, adherent.getIdentifiant());
 
 				rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_ACCUEIL);
 				rd.forward(request, response);
