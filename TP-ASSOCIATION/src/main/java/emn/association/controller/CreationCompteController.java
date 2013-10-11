@@ -9,11 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.validator.util.privilegedactions.GetConstructor;
-
 import emn.association.bean.Adherent;
 import emn.association.persistence.PersistenceServiceProvider;
 import emn.association.persistence.services.AdherentPersistence;
+import emn.association.services.impl.CreationCompteService;
+import emn.association.services.interfaces.ICreationCompteService;
 
 /**
  * Servlet implementation class CreationCompte
@@ -22,11 +22,13 @@ import emn.association.persistence.services.AdherentPersistence;
 public class CreationCompteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private ICreationCompteService serviceCreationCompte;
+
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public CreationCompteController() {
-		super();
+		this.serviceCreationCompte = new CreationCompteService();
 	}
 
 	/**
@@ -80,18 +82,17 @@ public class CreationCompteController extends HttpServlet {
 	 * @return
 	 */
 	private boolean verifierChampRempli(HttpServletRequest request) {
-		return (("").equals(request.getParameter("identifiant")) || ("").equals(request.getParameter("mot_de_passe"))
-				|| ("").equals(request.getParameter("mot_de_passe_confirmation")) || ("").equals(request.getParameter("nom_famille")) || ("")
-					.equals(request.getParameter("prenom")));
+		return this.serviceCreationCompte.verifierChampRempli(request.getParameter("identifiant"), request.getParameter("mot_de_passe"),
+				request.getParameter("mot_de_passe_confirmation"), request.getParameter("nom_famille"), request.getParameter("prenom"));
 	}
 
 	/**
-	 * Vérifie que les mots de passes sont identiques.s
+	 * Vérifie que les mots de passes sont identiquess
 	 * 
 	 * @param request
 	 * @return
 	 */
 	private boolean verifierMotDePasseIndentique(HttpServletRequest request) {
-		return request.getParameter("mot_de_passe").equals(request.getParameter("mot_de_passe_confirmation"));
+		return this.serviceCreationCompte.verifierMotDePasseIdentique(request.getParameter("mot_de_passe"), request.getParameter("mot_de_passe_confirmation"));
 	}
 }

@@ -1,22 +1,23 @@
 package emn.association.services.impl;
 
-import javax.servlet.http.HttpServletRequest;
-
 import emn.association.services.interfaces.ICreationCompteService;
 
 public class CreationCompteService implements ICreationCompteService {
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public boolean verifierChampRempli(HttpServletRequest request) {
-		return (("").equals(request.getParameter("identifiant")) || ("").equals(request.getParameter("mot_de_passe"))
-				|| ("").equals(request.getParameter("mot_de_passe_confirmation")) || ("").equals(request.getParameter("nom_famille")) || ("")
-					.equals(request.getParameter("prenom")));
+	public boolean verifierChampRempli(String identifiant, String pass, String passConfirmation, String nomFamille, String prenom) {
+		return (identifiant.isEmpty() || pass.isEmpty() || passConfirmation.isEmpty() || nomFamille.isEmpty() || prenom.isEmpty());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	public boolean verifierMotDePasseIndentique(HttpServletRequest request) {
-		return request.getParameter("mot_de_passe").equals(request.getParameter("mot_de_passe_confirmation"));
+	public boolean verifierMotDePasseIdentique(String pass, String passConfirmation) {
+		return pass.equals(passConfirmation);
 	}
-	
 
 }
