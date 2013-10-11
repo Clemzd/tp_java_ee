@@ -10,10 +10,19 @@ import emn.association.services.impl.LoginService;
 import emn.association.services.interfaces.ILoginService;
 
 public class LoginServiceTest {
+	
+	private static ILoginService service;
+	
+	private ILoginService getService() {
+		if (service == null) {
+			service = new LoginService();
+		}
+		return service;
+	}
 
 	@Test
 	public void testUtilisateurExiste() {
-		ILoginService login = new LoginService();
+		ILoginService login = getService();
 
 		// Création mock :
 		// id : Loufoks
@@ -33,7 +42,7 @@ public class LoginServiceTest {
 
 	@Test
 	public void testUtilisateurExistePas() {
-		ILoginService login = new LoginService();
+		ILoginService login = getService();
 
 		// Un user qui existe pas
 		AdherentMock mock = new AdherentMock();
@@ -46,7 +55,7 @@ public class LoginServiceTest {
 
 	@Test
 	public void testChampsValide() {
-		ILoginService login = new LoginService();
+		ILoginService login = getService();
 
 		// test doit etre True
 		System.out.println(" Champs valides ?");
@@ -55,7 +64,7 @@ public class LoginServiceTest {
 
 	@Test
 	public void testChampsNonValide() {
-		ILoginService login = new LoginService();
+		ILoginService login = getService();
 
 		// test doit etre True
 		System.out.println(" Champs non valide ?");
@@ -64,7 +73,7 @@ public class LoginServiceTest {
 
 	@Test
 	public void testRecupAdherent() {
-		ILoginService login = new LoginService();
+		ILoginService login = getService();
 
 		// Dans la base il y a :
 		// id : Loufoks
@@ -75,7 +84,7 @@ public class LoginServiceTest {
 
 	@Test
 	public void testRecupAdherentInconnu() {
-		ILoginService login = new LoginService();
+		ILoginService login = getService();
 
 		// Dans la base il y a :
 		// id : Loufoks

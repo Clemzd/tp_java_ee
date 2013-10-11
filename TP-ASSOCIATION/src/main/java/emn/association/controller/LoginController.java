@@ -19,7 +19,7 @@ import emn.association.utils.MessageUtils;
 /**
  * Servlet implementation class Login
  */
-@WebServlet(urlPatterns = {"/Login"})
+@WebServlet(urlPatterns = {"/"})
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
