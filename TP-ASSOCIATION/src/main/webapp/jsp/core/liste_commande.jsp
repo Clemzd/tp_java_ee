@@ -21,7 +21,7 @@
 				<th>Prix unitaire</th>
 				<th>Stock</th>
 				<th>Quantité</th>
-				<th>Somme des prix</th>
+				<th>Prix par article</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -39,6 +39,6 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<div class="alert alert-success">Somme des prix : ${total}</div>
+	<span class="alert alert-success pull-right" style="margin-right:10px" >Coût de la commande : ${total}</span>
 </body>
 </html>
