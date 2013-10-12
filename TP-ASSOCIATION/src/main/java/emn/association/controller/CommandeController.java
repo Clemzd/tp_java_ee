@@ -63,7 +63,7 @@ public class CommandeController extends HttpServlet {
 		RequestDispatcher rd;
 		rd = getServletContext().getRequestDispatcher("/jsp/core/liste_commande.jsp");
 		HttpSession session = request.getSession();
-		
+		// Mise à jour commande
 		String id = request.getParameter("article.code");
 		if (id != null && !id.isEmpty()) {
 			Article nouvArt = serviceArticle.load(request.getParameter("article.code"));
@@ -80,6 +80,29 @@ public class CommandeController extends HttpServlet {
 				session.setAttribute("panier", panier);
 			}
 		}
+		
+		//Annulation de commande
+		String estAnnuleCommande  = request.getParameter("annuler");
+		if(estAnnuleCommande != null && "true".equals(estAnnuleCommande)){
+			ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
+			panier = (ArrayList<ArticlePanier>) session.getAttribute("panier");
+			if (panier != null) {
+				//Si le panier existe, on le vide
+				serviceCommande.suppressionPanier(panier);
+			}
+		}
+		
+		//Validation de commande	
+		String estValideCommande  = request.getParameter("valider");
+		if(estValideCommande != null && "true".equals(estValideCommande)){
+			ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
+			panier = (ArrayList<ArticlePanier>) session.getAttribute("panier");
+			if (panier != null) {
+				//Si le panier existe, on le vide
+				serviceCommande.effectuerAchat(panier);
+			}
+		}
+		
 		rd.forward(request, response);
 	}
 

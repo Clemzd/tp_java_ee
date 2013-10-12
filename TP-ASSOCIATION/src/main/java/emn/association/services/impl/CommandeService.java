@@ -1,5 +1,6 @@
 package emn.association.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import emn.association.bean.Article;
@@ -24,6 +25,8 @@ public class CommandeService implements ICommandeService {
 		return nouvArt;
 	}
 
+	
+	
 	@Override
 	public void miseAJourPanier(List<ArticlePanier> panier, Article nouvelArticle) {		
 		boolean existe = false;
@@ -39,6 +42,19 @@ public class CommandeService implements ICommandeService {
 		if (!existe) {
 			panier.add(new ArticlePanier(nouvelArticle, 1));
 		}		
+	}
+
+	@Override
+	public boolean suppressionPanier(List<ArticlePanier> panier) {
+		panier.clear();
+		if(panier.isEmpty()) return true;
+		else return false;
+	}
+
+	@Override
+	public void effectuerAchat(List<ArticlePanier> panier) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

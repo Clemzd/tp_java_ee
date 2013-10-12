@@ -39,6 +39,10 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<span class="alert alert-success pull-right" style="margin-right:10px" >Coût de la commande : ${total}</span>
+	<div>
+		<a href="Commande?annuler=true"><button class="btn btn-lg btn-danger btn-default" >Annuler la commande</button></a>
+		<a href="Commande?valider=true"><button class="btn btn-lg btn-primary btn-default">Valider la commande</button></a>
+		<span class="alert alert-success pull-right" style="margin-right:10px" >Coût de la commande : ${total}</span>
+	</div>
 </body>
 </html>
