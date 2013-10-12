@@ -28,6 +28,7 @@ public interface ConstantUtils {
 	public final static String PATH_TO_COMMAND = "/jsp/core/liste_commande.jsp";
 	public final static String PATH_TO_LOGIN = "/jsp/core/login.jsp";
 	public final static String PATH_TO_LOGIN_REDIRECT = "/Login";
-	
+	public static final String PATH_TO_MERCI = "/jsp/core/merci.jsp";
+	public static final String PATH_TO_MERCI_REDIRECT = "/Merci";	
 
 }

@@ -67,6 +67,7 @@ public class CommandeTest {
 		}
 	
 	}
+	
 	@Test
 	public void testAnnulerCommande() {
 		System.out.println("\n ----- "  );
@@ -91,6 +92,35 @@ public class CommandeTest {
 		boolean suppr = serviceCommande.suppressionPanier(panier);
 		assertTrue(suppr);
 		System.out.println("\n Le panier a été vidé."  );
+		affichageContenuPanier(panier);
+	}
+	
+	@Test
+	public void testValiderCommande() {
+		System.out.println("\n ----- "  );
+		System.out.println("Test service Commande : Valider commande " );
+		
+		CommandeService serviceCommande = new CommandeService();
+		
+		List<ArticlePanier> panier = new ArrayList<ArticlePanier>();
+				
+		// Création d'un premier article de panier
+		ArticleMock mock1 = new ArticleMock();
+		//Ajout de deux articles
+		System.out.println("----- "  );
+		
+		System.out.println("\n Panier constitué de deux articles : " );
+		serviceCommande.miseAJourPanier(panier, mock1.createInstance());
+		serviceCommande.miseAJourPanier(panier, mock1.createInstance());
+		affichageContenuPanier(panier);
+		
+		//Validation de commande
+		System.out.println("\n On annule la commande "  );
+		boolean commandeEffectue = serviceCommande.effectuerAchat(panier);
+		assertTrue(commandeEffectue);
+		System.out.println("\n Le panier a été vidé."  );
+		affichageContenuPanier(panier);
+		System.out.println("\n La commande a été effectuée."  );
 		affichageContenuPanier(panier);
 	}
 	

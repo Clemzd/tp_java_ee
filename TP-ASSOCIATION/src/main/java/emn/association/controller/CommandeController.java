@@ -21,6 +21,7 @@ import emn.association.persistence.services.ArticlePersistence;
 import emn.association.services.impl.CommandeService;
 import emn.association.services.interfaces.ICommandeService;
 import emn.association.services.interfaces.ICreationCompteService;
+import emn.association.utils.ConstantUtils;
 
 /**
  * Servlet implementation class Accueil
@@ -101,9 +102,11 @@ public class CommandeController extends HttpServlet {
 				//Si le panier existe, on le vide
 				serviceCommande.effectuerAchat(panier);
 			}
+			// Redirection
+			response.sendRedirect(getServletContext().getContextPath() + ConstantUtils.PATH_TO_MERCI_REDIRECT);
+		}else{
+			rd.forward(request, response);
 		}
-		
-		rd.forward(request, response);
 	}
 
 }
