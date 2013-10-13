@@ -3,6 +3,7 @@ package emn.association.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -94,13 +95,13 @@ public class CommandeController extends HttpServlet {
 		}
 		
 		//Validation de commande	
-		String estValideCommande  = request.getParameter(ConstantesUtils.ATTRIBUT_PANIER);
+		String estValideCommande  = request.getParameter(ConstantesUtils.ATTRIBUT_VALIDER);
 		if(estValideCommande != null && ConstantesUtils.TRUE.equals(estValideCommande)){
 			ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
 			panier = (ArrayList<ArticlePanier>) session.getAttribute(ConstantesUtils.ATTRIBUT_PANIER);
 			if (panier != null) {
 				//Si le panier existe, on le vide
-				serviceCommande.effectuerAchat(panier);
+				effectuerAchat(panier);
 			}
 			// Redirection
 			response.sendRedirect(getServletContext().getContextPath() + ConstantesUtils.PATH_TO_MERCI_REDIRECT);
@@ -109,4 +110,14 @@ public class CommandeController extends HttpServlet {
 		}
 	}
 
+	public boolean effectuerAchat(List<ArticlePanier> panier) {
+		ArticlePersistence serviceArticle = PersistenceServiceProvider.getService(ArticlePersistence.class);
+		for (ArticlePanier articlePanier : panier) {
+			Article articleAchete = serviceArticle.load(articlePanier.getArticle().getCode());
+			articleAchete.setStock(articleAchete.getStock()-articlePanier.getQuantite());
+			serviceArticle.save(articleAchete);
+		}
+		return serviceCommande.suppressionPanier(panier);
+	}
+	
 }

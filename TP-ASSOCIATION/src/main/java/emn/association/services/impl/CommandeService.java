@@ -51,14 +51,4 @@ public class CommandeService implements ICommandeService {
 		else return false;
 	}
 
-	@Override
-	public boolean effectuerAchat(List<ArticlePanier> panier) {
-		for (ArticlePanier articlePanier : panier) {
-			Article articleAchete = serviceArticle.load(articlePanier.getArticle().getCode());
-			articleAchete.setStock(articleAchete.getStock()-articlePanier.getQuantite());
-			serviceArticle.save(articleAchete);
-		}
-		return suppressionPanier(panier);
-	}
-
 }

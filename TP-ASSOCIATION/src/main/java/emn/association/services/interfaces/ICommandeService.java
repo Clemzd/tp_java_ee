@@ -11,6 +11,5 @@ public interface ICommandeService {
 	public Article getArticleFromCode(String code);
 	public void miseAJourPanier(List<ArticlePanier> panier, Article nouvelArticle);
 	public boolean suppressionPanier(List<ArticlePanier> panier);
-	public boolean effectuerAchat(List<ArticlePanier> panier);
 
 }
