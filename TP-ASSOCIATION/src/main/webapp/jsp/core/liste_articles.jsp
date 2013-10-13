@@ -30,7 +30,17 @@
 					<td>${article.nom }</td>
 					<td>${article.prix }</td>
 					<td>${article.stock }</td>
-					<td><a href="Commande?article.code=${article.code }">Commander</a>
+					<td>
+					  <select name="quantite" id="quantite">
+						  <option value="0">0</option>
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option value="4">4</option>
+						  <option value="5">5</option>
+					  </select>
+					</td>
+					<td><a href="Commande?article.code=${article.code }&quantite=<script>$('#quantite option:selected').val();</script>">Commander</a></td>
 				</tr>
 			</c:forEach>
 		</tbody>

@@ -72,6 +72,7 @@
 				<input type="text" class="form-control" id="pays" name="pays" placeholder="Pays" value="${param.pays}">
 			</div>
 		</div>
+			<p style="color:red">* : Champs obligatoire</p>
 		<div class="form-group">
 			<div class="col-lg-offset-1 col-lg-1">
 				<button type="submit" class="btn btn-default">Enregistrer</button>

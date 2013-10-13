@@ -65,6 +65,13 @@ public class CommandeController extends HttpServlet {
 		RequestDispatcher rd;
 		rd = getServletContext().getRequestDispatcher(ConstantesUtils.PATH_TO_COMMAND);
 		HttpSession session = request.getSession();
+		
+		// Mise à jour commande
+		//TODO
+		String quantite = request.getParameter(ConstantesUtils.ATTRIBUT_QUANTITE);
+		if(quantite != null)
+		System.out.println("quantite désirée :"+quantite);
+		
 		// Mise à jour commande
 		String id = request.getParameter(ConstantesUtils.ATTRIBUT_CODE_ARTICLE);
 		if (id != null && !id.isEmpty()) {

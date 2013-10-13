@@ -22,6 +22,7 @@ public interface ConstantesUtils {
 	public static final String ATTRIBUT_DECONNECTION = "deco";
 	public static final String ATTRIBUT_ANNULER_COMMANDE = "annuler";
 	public static final String ATTRIBUT_VALIDER = "valider";
+	public static final String ATTRIBUT_QUANTITE = "quantite";
 	
 	// Constantes global
 	public final static String ATTRIBUT_ADHERENT = "adherent";
@@ -36,6 +37,7 @@ public interface ConstantesUtils {
 	public final static String PATH_TO_LOGIN_REDIRECT = "/Login";
 	public static final String PATH_TO_MERCI = "/jsp/core/merci.jsp";
 	public static final String PATH_TO_MERCI_REDIRECT = "/Merci";
+	
 
 
 	
