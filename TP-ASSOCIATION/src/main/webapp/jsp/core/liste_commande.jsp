@@ -9,40 +9,48 @@
 <body>
 	<%@ include file="../common/navbar.jsp"%>
 	<script>
-		$("li").attr("class","");
-		$("#commande").attr("class","active");
+		$("li").attr("class", "");
+		$("#commande").attr("class", "active");
 	</script>
 	<h1>Commande</h1>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Code</th>
-				<th>Nom</th>
-				<th>Prix unitaire</th>
-				<th>Stock</th>
-				<th>Quantité</th>
-				<th>Total par article</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:set var="total" value="0" />
-			<c:forEach var="articlePanier" items="${panier}">
-				<tr>
-					<td>${articlePanier.article.code }</td>
-					<td>${articlePanier.article.nom }</td>
-					<td>${articlePanier.article.prix}</td>
-					<td>${articlePanier.article.stock}</td>
-					<td>${articlePanier.quantite }</td>
-					<td>${articlePanier.article.prix * articlePanier.quantite}</td>
-					<c:set var="total" value="${total + articlePanier.article.prix * articlePanier.quantite}" />
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	<div>
-		<a href="Commande?annuler=true"><button class="btn btn-lg btn-danger btn-default" >Annuler la commande</button></a>
-		<a href="Commande?valider=true"><button class="btn btn-lg btn-primary btn-default">Valider la commande</button></a>
-		<span class="alert alert-success pull-right" style="margin-right:10px" >Coût de la commande : ${total}</span>
-	</div>
+	<c:choose>
+		<c:when test="${empty panier }">
+			<div class="alert alert-warning">
+				Aucun article n'a encore été commandé.
+			</div>
+		</c:when>
+		<c:otherwise>
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Code</th>
+						<th>Nom</th>
+						<th>Prix unitaire</th>
+						<th>Stock</th>
+						<th>Quantité</th>
+						<th>Total par article</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:set var="total" value="0" />
+					<c:forEach var="articlePanier" items="${panier}">
+						<tr>
+							<td>${articlePanier.article.code }</td>
+							<td>${articlePanier.article.nom }</td>
+							<td>${articlePanier.article.prix}</td>
+							<td>${articlePanier.article.stock}</td>
+							<td>${articlePanier.quantite }</td>
+							<td>${articlePanier.article.prix * articlePanier.quantite}</td>
+							<c:set var="total" value="${total + articlePanier.article.prix * articlePanier.quantite}" />
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			<div>
+				<a href="Commande?annuler=true"><button class="btn btn-lg btn-danger btn-default">Annuler la commande</button></a> <a href="Commande?valider=true"><button
+						class="btn btn-lg btn-primary btn-default">Valider la commande</button></a> <span class="alert alert-success pull-right" style="margin-right: 10px">Coût de la commande : ${total}</span>
+			</div>
+		</c:otherwise>
+	</c:choose>
 </body>
 </html>

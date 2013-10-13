@@ -13,11 +13,9 @@
 		$("#accueil").attr("class", "active");
 	</script>
 	<h1>Bienvenue sur le site des adhérents de l'association.</h1>
-	<div class="nav nav-pills nav-stacked">
-		<ul>
-			<li><a href="Catalogue"> Consulter les articles disponibles. </a></li>
-			<li><a href="Commande"> Consulter votre commande. </a></li>
-		</ul>
+	<div class="jumbotron">
+			<a href="Catalogue">Consulter les articles disponibles. </a><br /> 
+			<a href="Commande">Consulter votre commande. </a>
 	</div>
 </body>
 </html>

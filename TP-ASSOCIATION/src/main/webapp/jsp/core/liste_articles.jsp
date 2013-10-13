@@ -13,7 +13,7 @@
 		$("#catalogue").attr("class", "active");
 	</script>
 	<h1>Catalogue des articles</h1>
-	<table class="table">
+	<table class="table table-striped">
 		<thead>
 			<tr>
 				<th>Code</th>
@@ -31,14 +31,11 @@
 					<td>${article.prix }</td>
 					<td>${article.stock }</td>
 					<td>
-					  <select name="quantite" id="quantite">
-						  <option value="0">0</option>
-						  <option value="1">1</option>
-						  <option value="2">2</option>
-						  <option value="3">3</option>
-						  <option value="4">4</option>
-						  <option value="5">5</option>
-					  </select>
+						<select name="quantite" id="quantite" class="form-control">
+							<c:forEach var="compteur" begin="1" end="${article.stock }">
+								<option value="${compteur }">${compteur }</option>
+							</c:forEach>
+						</select>
 					</td>
 					<td><a href="Commande?article.code=${article.code }&quantite=<script>$('#quantite option:selected').val();</script>">Commander</a></td>
 				</tr>
