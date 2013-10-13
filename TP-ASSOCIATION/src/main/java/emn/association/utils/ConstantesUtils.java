@@ -1,6 +1,6 @@
 package emn.association.utils;
 
-public interface ConstantUtils {
+public interface ConstantesUtils {
 	
 	// Constantes pour la servlet Login
 	public final static String ATTRIBUT_ERREUR = "erreur";
@@ -17,9 +17,15 @@ public interface ConstantUtils {
 	public final static String ATTRIBUT_VILLE = "ville";
 	public final static String ATTRIBUT_PASSE = "mot_de_passe";
 	public final static String ATTRIBUT_PASSE_CONFIRMATION = "mot_de_passe_confirmation";
+	public static final String ATTRIBUT_PANIER = "panier";
+	public static final String ATTRIBUT_CODE_ARTICLE = "article.code";
+	public static final String ATTRIBUT_DECONNECTION = "deco";
+	public static final String ATTRIBUT_ANNULER_COMMANDE = "annuler";
+	public static final String ATTRIBUT_VALIDER = "valider";
 	
 	// Constantes global
 	public final static String ATTRIBUT_ADHERENT = "adherent";
+	public static final String TRUE = "true";
 	
 	// Chemin vers les jsp
 	public final static String PATH_TO_ACCUEIL = "/jsp/core/accueil.jsp";
@@ -29,6 +35,9 @@ public interface ConstantUtils {
 	public final static String PATH_TO_LOGIN = "/jsp/core/login.jsp";
 	public final static String PATH_TO_LOGIN_REDIRECT = "/Login";
 	public static final String PATH_TO_MERCI = "/jsp/core/merci.jsp";
-	public static final String PATH_TO_MERCI_REDIRECT = "/Merci";	
+	public static final String PATH_TO_MERCI_REDIRECT = "/Merci";
+
+
+	
 
 }

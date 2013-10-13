@@ -21,7 +21,7 @@ import emn.association.persistence.services.ArticlePersistence;
 import emn.association.services.impl.CommandeService;
 import emn.association.services.interfaces.ICommandeService;
 import emn.association.services.interfaces.ICreationCompteService;
-import emn.association.utils.ConstantUtils;
+import emn.association.utils.ConstantesUtils;
 
 /**
  * Servlet implementation class Accueil
@@ -62,15 +62,15 @@ public class CommandeController extends HttpServlet {
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArticlePersistence serviceArticle = PersistenceServiceProvider.getService(ArticlePersistence.class);
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher("/jsp/core/liste_commande.jsp");
+		rd = getServletContext().getRequestDispatcher(ConstantesUtils.PATH_TO_COMMAND);
 		HttpSession session = request.getSession();
 		// Mise à jour commande
-		String id = request.getParameter("article.code");
+		String id = request.getParameter(ConstantesUtils.ATTRIBUT_CODE_ARTICLE);
 		if (id != null && !id.isEmpty()) {
-			Article nouvArt = serviceArticle.load(request.getParameter("article.code"));
+			Article nouvArt = serviceArticle.load(request.getParameter(ConstantesUtils.ATTRIBUT_CODE_ARTICLE));
 
 			ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
-			panier = (ArrayList<ArticlePanier>) session.getAttribute("panier");
+			panier = (ArrayList<ArticlePanier>) session.getAttribute(ConstantesUtils.ATTRIBUT_PANIER);
 			if (panier != null) {
 				//Si le panier est déjà créé on le met à jour
 				serviceCommande.miseAJourPanier(panier, nouvArt);
@@ -78,15 +78,15 @@ public class CommandeController extends HttpServlet {
 				// On crée le panier en lui ajoutant l'article
 				panier = new ArrayList<ArticlePanier>();
 				panier.add(new ArticlePanier(nouvArt, 1));
-				session.setAttribute("panier", panier);
+				session.setAttribute(ConstantesUtils.ATTRIBUT_PANIER, panier);
 			}
 		}
 		
 		//Annulation de commande
-		String estAnnuleCommande  = request.getParameter("annuler");
-		if(estAnnuleCommande != null && "true".equals(estAnnuleCommande)){
+		String estAnnuleCommande  = request.getParameter(ConstantesUtils.ATTRIBUT_ANNULER_COMMANDE);
+		if(estAnnuleCommande != null && ConstantesUtils.TRUE.equals(estAnnuleCommande)){
 			ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
-			panier = (ArrayList<ArticlePanier>) session.getAttribute("panier");
+			panier = (ArrayList<ArticlePanier>) session.getAttribute(ConstantesUtils.ATTRIBUT_PANIER);
 			if (panier != null) {
 				//Si le panier existe, on le vide
 				serviceCommande.suppressionPanier(panier);
@@ -94,16 +94,16 @@ public class CommandeController extends HttpServlet {
 		}
 		
 		//Validation de commande	
-		String estValideCommande  = request.getParameter("valider");
-		if(estValideCommande != null && "true".equals(estValideCommande)){
+		String estValideCommande  = request.getParameter(ConstantesUtils.ATTRIBUT_PANIER);
+		if(estValideCommande != null && ConstantesUtils.TRUE.equals(estValideCommande)){
 			ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
-			panier = (ArrayList<ArticlePanier>) session.getAttribute("panier");
+			panier = (ArrayList<ArticlePanier>) session.getAttribute(ConstantesUtils.ATTRIBUT_PANIER);
 			if (panier != null) {
 				//Si le panier existe, on le vide
 				serviceCommande.effectuerAchat(panier);
 			}
 			// Redirection
-			response.sendRedirect(getServletContext().getContextPath() + ConstantUtils.PATH_TO_MERCI_REDIRECT);
+			response.sendRedirect(getServletContext().getContextPath() + ConstantesUtils.PATH_TO_MERCI_REDIRECT);
 		}else{
 			rd.forward(request, response);
 		}

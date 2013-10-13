@@ -14,7 +14,7 @@ import emn.association.persistence.PersistenceServiceProvider;
 import emn.association.persistence.services.AdherentPersistence;
 import emn.association.services.impl.CreationCompteService;
 import emn.association.services.interfaces.ICreationCompteService;
-import emn.association.utils.ConstantUtils;
+import emn.association.utils.ConstantesUtils;
 import emn.association.utils.MessageUtils;
 
 /**
@@ -39,7 +39,7 @@ public class CreationCompteController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_FORM);
+		rd = getServletContext().getRequestDispatcher(ConstantesUtils.PATH_TO_FORM);
 		rd.forward(request, response);
 	}
 
@@ -49,30 +49,30 @@ public class CreationCompteController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_FORM);
+		rd = getServletContext().getRequestDispatcher(ConstantesUtils.PATH_TO_FORM);
 		// Erreur formulaire
 		if (!verifierChampRempli(request)) {
-			request.setAttribute(ConstantUtils.ATTRIBUT_ERREUR, MessageUtils.CHAMP_OBLIGATOIRES);
+			request.setAttribute(ConstantesUtils.ATTRIBUT_ERREUR, MessageUtils.CHAMP_OBLIGATOIRES);
 			rd.forward(request, response);
 		} else if (!verifierMotDePasseIndentique(request)) {
-			request.setAttribute(ConstantUtils.ATTRIBUT_ERREUR, MessageUtils.MOTS_DE_PASSE_DIFFERENT);
+			request.setAttribute(ConstantesUtils.ATTRIBUT_ERREUR, MessageUtils.MOTS_DE_PASSE_DIFFERENT);
 			rd.forward(request, response);
 		} else {
 			// Ajout en base
 			AdherentPersistence serviceAdherent = PersistenceServiceProvider.getService(AdherentPersistence.class);
 			Adherent adherent = new Adherent();
-			adherent.setIdentifiant(request.getParameter(ConstantUtils.ATTRIBUT_IDENTIFIANT));
-			adherent.setCodepostal(request.getParameter(ConstantUtils.ATTRIBUT_CODE_POSTAL));
-			adherent.setMotdepasse(request.getParameter(ConstantUtils.ATTRIBUT_PASSE));
-			adherent.setNomdefamille(request.getParameter(ConstantUtils.ATTRIBUT_NOM_FAMILLE));
-			adherent.setPays(request.getParameter(ConstantUtils.ATTRIBUT_PAYS));
-			adherent.setPrenom(request.getParameter(ConstantUtils.ATTRIBUT_PRENOM));
-			adherent.setRue(request.getParameter(ConstantUtils.ATTRIBUT_ADRESSE));
-			adherent.setVille(request.getParameter(ConstantUtils.ATTRIBUT_VILLE));
+			adherent.setIdentifiant(request.getParameter(ConstantesUtils.ATTRIBUT_IDENTIFIANT));
+			adherent.setCodepostal(request.getParameter(ConstantesUtils.ATTRIBUT_CODE_POSTAL));
+			adherent.setMotdepasse(request.getParameter(ConstantesUtils.ATTRIBUT_PASSE));
+			adherent.setNomdefamille(request.getParameter(ConstantesUtils.ATTRIBUT_NOM_FAMILLE));
+			adherent.setPays(request.getParameter(ConstantesUtils.ATTRIBUT_PAYS));
+			adherent.setPrenom(request.getParameter(ConstantesUtils.ATTRIBUT_PRENOM));
+			adherent.setRue(request.getParameter(ConstantesUtils.ATTRIBUT_ADRESSE));
+			adherent.setVille(request.getParameter(ConstantesUtils.ATTRIBUT_VILLE));
 			serviceAdherent.save(adherent);
 
 			// Redirection
-			response.sendRedirect(getServletContext().getContextPath() + ConstantUtils.PATH_TO_LOGIN_REDIRECT);
+			response.sendRedirect(getServletContext().getContextPath() + ConstantesUtils.PATH_TO_LOGIN_REDIRECT);
 
 		}
 	}
@@ -84,9 +84,9 @@ public class CreationCompteController extends HttpServlet {
 	 * @return
 	 */
 	private boolean verifierChampRempli(HttpServletRequest request) {
-		return this.serviceCreationCompte.verifierChampRempli(request.getParameter(ConstantUtils.ATTRIBUT_IDENTIFIANT),
-				request.getParameter(ConstantUtils.ATTRIBUT_PASSE), request.getParameter(ConstantUtils.ATTRIBUT_PASSE_CONFIRMATION),
-				request.getParameter(ConstantUtils.ATTRIBUT_NOM_FAMILLE), request.getParameter(ConstantUtils.ATTRIBUT_PRENOM));
+		return this.serviceCreationCompte.verifierChampRempli(request.getParameter(ConstantesUtils.ATTRIBUT_IDENTIFIANT),
+				request.getParameter(ConstantesUtils.ATTRIBUT_PASSE), request.getParameter(ConstantesUtils.ATTRIBUT_PASSE_CONFIRMATION),
+				request.getParameter(ConstantesUtils.ATTRIBUT_NOM_FAMILLE), request.getParameter(ConstantesUtils.ATTRIBUT_PRENOM));
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class CreationCompteController extends HttpServlet {
 	 * @return
 	 */
 	private boolean verifierMotDePasseIndentique(HttpServletRequest request) {
-		return this.serviceCreationCompte.verifierMotDePasseIdentique(request.getParameter(ConstantUtils.ATTRIBUT_PASSE),
-				request.getParameter(ConstantUtils.ATTRIBUT_PASSE_CONFIRMATION));
+		return this.serviceCreationCompte.verifierMotDePasseIdentique(request.getParameter(ConstantesUtils.ATTRIBUT_PASSE),
+				request.getParameter(ConstantesUtils.ATTRIBUT_PASSE_CONFIRMATION));
 	}
 }

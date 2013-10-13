@@ -6,5 +6,6 @@
 			<li id="commande"><a href="Commande">Commande</a></li>
 		</ul>
 		<p class="navbar-text pull-right">adherent : ${ adherent }</p>
+		<a href="Login?deco=true"> <button class="navbar-text pull-right" type="submit" class="btn btn-default">Se déconnecter</button></a>
 	</div>		
 </nav>

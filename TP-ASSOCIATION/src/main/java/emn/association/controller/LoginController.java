@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import emn.association.bean.Adherent;
 import emn.association.services.impl.LoginService;
 import emn.association.services.interfaces.ILoginService;
-import emn.association.utils.ConstantUtils;
+import emn.association.utils.ConstantesUtils;
 import emn.association.utils.MessageUtils;
 
 /**
@@ -36,7 +36,7 @@ public class LoginController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_LOGIN);
+		rd = getServletContext().getRequestDispatcher(ConstantesUtils.PATH_TO_LOGIN);
 		rd.forward(request, response);
 	}
 
@@ -49,27 +49,32 @@ public class LoginController extends HttpServlet {
 		ILoginService loginService = new LoginService();		
 		HttpSession session = request.getSession();
 
-		String id = request.getParameter(ConstantUtils.ATTRIBUT_ID);
-		String mdp = request.getParameter(ConstantUtils.ATTRIBUT_PWD);
-
+		String id = request.getParameter(ConstantesUtils.ATTRIBUT_ID);
+		String mdp = request.getParameter(ConstantesUtils.ATTRIBUT_PWD);
+		String deco = request.getParameter(ConstantesUtils.ATTRIBUT_DECONNECTION);
+		
+		if(deco!= null && ConstantesUtils.TRUE.equals(deco)){
+			session.removeAttribute(ConstantesUtils.ATTRIBUT_ADHERENT);
+		}
+		
 		if (loginService.champsValide(id, mdp)) {
 			
 			Adherent adherent = loginService.getAdherentFromId(id);
 			
 			if (loginService.motDePasseOK(adherent, mdp)) {
 				// Stockage du nom de l'adherent s'etant connecte
-				session.setAttribute(ConstantUtils.ATTRIBUT_ADHERENT, adherent.getIdentifiant());
+				session.setAttribute(ConstantesUtils.ATTRIBUT_ADHERENT, adherent.getIdentifiant());
 
-				rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_ACCUEIL);
+				rd = getServletContext().getRequestDispatcher(ConstantesUtils.PATH_TO_ACCUEIL);
 				rd.forward(request, response);
 			} else {
-				request.setAttribute(ConstantUtils.ATTRIBUT_ERREUR, MessageUtils.WRONG_ID_OR_PWD);
-				rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_LOGIN);
+				request.setAttribute(ConstantesUtils.ATTRIBUT_ERREUR, MessageUtils.WRONG_ID_OR_PWD);
+				rd = getServletContext().getRequestDispatcher(ConstantesUtils.PATH_TO_LOGIN);
 				rd.forward(request, response);
 			}
 		} else {
-			request.setAttribute(ConstantUtils.ATTRIBUT_ERREUR, MessageUtils.NO_ID_OR_PWD);
-			rd = getServletContext().getRequestDispatcher(ConstantUtils.PATH_TO_LOGIN);
+			request.setAttribute(ConstantesUtils.ATTRIBUT_ERREUR, MessageUtils.NO_ID_OR_PWD);
+			rd = getServletContext().getRequestDispatcher(ConstantesUtils.PATH_TO_LOGIN);
 			rd.forward(request, response);
 		}
 	}
