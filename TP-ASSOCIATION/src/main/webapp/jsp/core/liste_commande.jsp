@@ -21,7 +21,7 @@
 				<th>Prix unitaire</th>
 				<th>Stock</th>
 				<th>Quantité</th>
-				<th>Prix par article</th>
+				<th>Total par article</th>
 			</tr>
 		</thead>
 		<tbody>
