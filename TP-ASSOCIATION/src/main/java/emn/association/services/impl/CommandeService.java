@@ -44,6 +44,17 @@ public class CommandeService implements ICommandeService {
 		}		
 	}
 
+	public boolean effectuerAchat(List<ArticlePanier> panier) {
+		ArticlePersistence serviceArticle = PersistenceServiceProvider.getService(ArticlePersistence.class);
+		for (ArticlePanier articlePanier : panier) {
+			Article articleAchete = serviceArticle.load(articlePanier.getArticle().getCode());
+			articleAchete.setStock(articleAchete.getStock()-articlePanier.getQuantite());
+			serviceArticle.save(articleAchete);
+		}
+		return suppressionPanier(panier);
+	}
+	
+	
 	@Override
 	public boolean suppressionPanier(List<ArticlePanier> panier) {
 		panier.clear();

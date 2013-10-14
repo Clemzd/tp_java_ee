@@ -108,7 +108,7 @@ public class CommandeController extends HttpServlet {
 			panier = (ArrayList<ArticlePanier>) session.getAttribute(ConstantesUtils.ATTRIBUT_PANIER);
 			if (panier != null) {
 				//Si le panier existe, on le vide
-				effectuerAchat(panier);
+				serviceCommande.effectuerAchat(panier);
 			}
 			// Redirection
 			response.sendRedirect(getServletContext().getContextPath() + ConstantesUtils.PATH_TO_MERCI_REDIRECT);
@@ -116,15 +116,4 @@ public class CommandeController extends HttpServlet {
 			rd.forward(request, response);
 		}
 	}
-
-	public boolean effectuerAchat(List<ArticlePanier> panier) {
-		ArticlePersistence serviceArticle = PersistenceServiceProvider.getService(ArticlePersistence.class);
-		for (ArticlePanier articlePanier : panier) {
-			Article articleAchete = serviceArticle.load(articlePanier.getArticle().getCode());
-			articleAchete.setStock(articleAchete.getStock()-articlePanier.getQuantite());
-			serviceArticle.save(articleAchete);
-		}
-		return serviceCommande.suppressionPanier(panier);
-	}
-	
 }
