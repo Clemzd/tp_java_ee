@@ -48,6 +48,11 @@ public class CommandeService implements ICommandeService {
 		ArticlePersistence serviceArticle = PersistenceServiceProvider.getService(ArticlePersistence.class);
 		for (ArticlePanier articlePanier : panier) {
 			Article articleAchete = serviceArticle.load(articlePanier.getArticle().getCode());
+			if ((articleAchete.getStock()-articlePanier.getQuantite()) < 0) {
+				// TODO mettre a jour les articles du panier seulement si TOUS les articles dedans sont OK (le stock ne sera pas < 0)
+				// Pour l'instant ca met à jour les articles précédents la detection d'un article KO
+				return false; 
+			}
 			articleAchete.setStock(articleAchete.getStock()-articlePanier.getQuantite());
 			serviceArticle.save(articleAchete);
 		}

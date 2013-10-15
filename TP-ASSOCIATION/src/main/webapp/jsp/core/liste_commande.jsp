@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,12 +14,17 @@
 		$("#commande").attr("class", "active");
 	</script>
 	<h1>Commande</h1>
+
+	<c:if test="${not empty commandeKO}">
+		<div class="alert alert-danger">${commandeKO}</div>
+	</c:if>
+	
 	<c:choose>
+
 		<c:when test="${empty panier }">
-			<div class="alert alert-warning">
-				Aucun article n'a encore été commandé.
-			</div>
+			<div class="alert alert-warning">Aucun article n'a encore été commandé.</div>
 		</c:when>
+
 		<c:otherwise>
 			<table class="table">
 				<thead>
@@ -41,14 +47,19 @@
 							<td>${articlePanier.article.stock}</td>
 							<td>${articlePanier.quantite }</td>
 							<td>${articlePanier.article.prix * articlePanier.quantite}</td>
-							<c:set var="total" value="${total + articlePanier.article.prix * articlePanier.quantite}" />
+							<c:set var="total"
+								value="${total + articlePanier.article.prix * articlePanier.quantite}" />
 						</tr>
 					</c:forEach>
 				</tbody>
 			</table>
 			<div>
-				<a href="Commande?annuler=true"><button class="btn btn-lg btn-danger btn-default">Annuler la commande</button></a> <a href="Commande?valider=true"><button
-						class="btn btn-lg btn-primary btn-default">Valider la commande</button></a> <span class="alert alert-success pull-right" style="margin-right: 10px">Coût de la commande : ${total}</span>
+				<a href="Commande?annuler=true"><button
+						class="btn btn-lg btn-danger btn-default">Annuler la
+						commande</button></a> <a href="Commande?valider=true"><button
+						class="btn btn-lg btn-primary btn-default">Valider la
+						commande</button></a> <span class="alert alert-success pull-right"
+					style="margin-right: 10px">Coût de la commande : ${total}</span>
 			</div>
 		</c:otherwise>
 	</c:choose>

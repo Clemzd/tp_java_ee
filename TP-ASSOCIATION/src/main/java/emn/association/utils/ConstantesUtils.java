@@ -17,12 +17,15 @@ public interface ConstantesUtils {
 	public final static String ATTRIBUT_VILLE = "ville";
 	public final static String ATTRIBUT_PASSE = "mot_de_passe";
 	public final static String ATTRIBUT_PASSE_CONFIRMATION = "mot_de_passe_confirmation";
+	
+	// Constantes pour la servlet de commande
 	public static final String ATTRIBUT_PANIER = "panier";
 	public static final String ATTRIBUT_CODE_ARTICLE = "article.code";
 	public static final String ATTRIBUT_DECONNECTION = "deco";
 	public static final String ATTRIBUT_ANNULER_COMMANDE = "annuler";
 	public static final String ATTRIBUT_VALIDER = "valider";
 	public static final String ATTRIBUT_QUANTITE = "quantite";
+	public static final String ATTRIBUT_COMMANDE_KO = "commandeKO";
 	
 	// Constantes global
 	public final static String ATTRIBUT_ADHERENT = "adherent";
