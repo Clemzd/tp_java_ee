@@ -36,7 +36,7 @@ public class CommandeTest {
 		affichageContenuPanier(panier);
 		
 		System.out.println(" \n premier ajout : " );
-		serviceCommande.miseAJourPanier(panier, article1);
+		serviceCommande.miseAJourPanier(panier, article1, 1);
 		affichageContenuPanier(panier);
 		for (ArticlePanier articlePanier : panier) {
 			if(articlePanier.getArticle().equals(article1)){
@@ -45,7 +45,7 @@ public class CommandeTest {
 		}
 		
 		System.out.println("\n ajout d'un autre article : " );
-		serviceCommande.miseAJourPanier(panier, article2);
+		serviceCommande.miseAJourPanier(panier, article2, 1);
 		affichageContenuPanier(panier);
 		for (ArticlePanier articlePanier : panier) {
 			if(articlePanier.getArticle().equals(article1)){
@@ -56,7 +56,7 @@ public class CommandeTest {
 		}
 		
 		System.out.println("\n ajout d'un article déjà commandé : " );
-		serviceCommande.miseAJourPanier(panier, article1);
+		serviceCommande.miseAJourPanier(panier, article1, 1);
 		affichageContenuPanier(panier);
 		for (ArticlePanier articlePanier : panier) {
 			if(articlePanier.getArticle().equals(article1)){
@@ -83,8 +83,8 @@ public class CommandeTest {
 		System.out.println("----- "  );
 		
 		System.out.println("\n Panier constitué de deux articles : " );
-		serviceCommande.miseAJourPanier(panier, mock1.createInstance());
-		serviceCommande.miseAJourPanier(panier, mock1.createInstance());
+		serviceCommande.miseAJourPanier(panier, mock1.createInstance(), 1);
+		serviceCommande.miseAJourPanier(panier, mock1.createInstance(), 1);
 		affichageContenuPanier(panier);
 		
 		//Annulation de commande

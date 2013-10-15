@@ -9,7 +9,8 @@ import emn.association.bean.ArticlePanier;
 public interface ICommandeService {
 	
 	public Article getArticleFromCode(String code);
-	public void miseAJourPanier(List<ArticlePanier> panier, Article nouvelArticle);
+	public void miseAJourPanier(List<ArticlePanier> panier, Article nouvelArticle, int quantite);
 	public boolean suppressionPanier(List<ArticlePanier> panier);
+	public boolean effectuerAchat(List<ArticlePanier> panier);
 
 }

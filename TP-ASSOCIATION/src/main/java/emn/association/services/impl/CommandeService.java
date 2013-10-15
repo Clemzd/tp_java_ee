@@ -28,22 +28,33 @@ public class CommandeService implements ICommandeService {
 	
 	
 	@Override
-	public void miseAJourPanier(List<ArticlePanier> panier, Article nouvelArticle) {		
+	public void miseAJourPanier(List<ArticlePanier> panier, Article nouvelArticle, int quantite) {		
 		boolean existe = false;
 		// On recherche si l'article existe
 		for (ArticlePanier article : panier) {
 			// Si oui on met à jour la quantité
 			if (nouvelArticle.equals(article.getArticle())) {
-				article.setQuantite(article.getQuantite() + 1);
+				article.setQuantite(article.getQuantite() + quantite);
 				existe = true;
 			}
 		}
 		// Sinon on l'ajoute
 		if (!existe) {
-			panier.add(new ArticlePanier(nouvelArticle, 1));
+			panier.add(new ArticlePanier(nouvelArticle, quantite));
 		}		
 	}
 
+	public boolean effectuerAchat(List<ArticlePanier> panier) {
+		ArticlePersistence serviceArticle = PersistenceServiceProvider.getService(ArticlePersistence.class);
+		for (ArticlePanier articlePanier : panier) {
+			Article articleAchete = serviceArticle.load(articlePanier.getArticle().getCode());
+			articleAchete.setStock(articleAchete.getStock()-articlePanier.getQuantite());
+			serviceArticle.save(articleAchete);
+		}
+		return suppressionPanier(panier);
+	}
+	
+	
 	@Override
 	public boolean suppressionPanier(List<ArticlePanier> panier) {
 		panier.clear();
