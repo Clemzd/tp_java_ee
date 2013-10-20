@@ -17,7 +17,7 @@ import emn.association.utils.ConstantesUtils;
 /**
  * Servlet Filter implementation class NonConnecteFilter
  */
-@WebFilter(urlPatterns={"/Accueil","/Catalogue","/Commande"})
+@WebFilter(urlPatterns={"/Accueil","/Catalogue","/Commande","/Merci"})
 public class InterditFilter implements Filter {
 
 	/**
