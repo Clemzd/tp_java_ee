@@ -57,7 +57,8 @@
 		<div class="form-group">
 			<label for="codePostal" class="col-lg-1 control-label">Code Postal</label>
 			<div class="col-lg-5">
-				<input type="text" class="form-control" id="code_postal" name="code_postal" placeholder="Code postal" value="${param.code_postal}">
+				<input type="text" class="form-control" id="code_postal" name="code_postal" placeholder="Code postal" value="${param.code_postal}"
+				pattern="[1-9]{5}" title="5 chiffres">
 			</div>
 		</div>
 		<div class="form-group">
