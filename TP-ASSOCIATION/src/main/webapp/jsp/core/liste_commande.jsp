@@ -24,8 +24,8 @@
 	<c:choose>
 
 		<c:when test="${empty panier }">
-			<div class="alert alert-warning">Aucun article n'a encore été
-				commandé.</div>
+			<div class="alert alert-warning">Aucun article n'a encore Ã©tÃ©
+				commandÃ©.</div>
 		</c:when>
 
 		<c:otherwise>
@@ -36,7 +36,7 @@
 						<th>Nom</th>
 						<th>Prix unitaire</th>
 						<th>Stock</th>
-						<th>Quantité</th>
+						<th>QuantitÃ©</th>
 						<th>Total par article</th>
 					</tr>
 				</thead>
@@ -47,12 +47,12 @@
 							<td>${articlePanier.article.code }</td>
 							<td>${articlePanier.article.nom }</td>
 							<td>
-								<fmt:formatNumber type="number" maxFractionDigits="2" value="${articlePanier.article.prix}" />
+								<fmt:formatNumber type="currency" maxFractionDigits="2" value="${articlePanier.article.prix}" currencySymbol="&euro;" />
 							</td>
 							<td>${articlePanier.article.stock}</td>
 							<td>${articlePanier.quantite }</td>
-							<td><fmt:formatNumber type="number" maxFractionDigits="2"
-									value="${articlePanier.article.prix * articlePanier.quantite}" /></td>
+							<td><fmt:formatNumber type="currency" maxFractionDigits="2"
+									value="${articlePanier.article.prix * articlePanier.quantite}"  currencySymbol="&euro;"/></td>
 							<c:set var="total"
 								value="${total + articlePanier.article.prix * articlePanier.quantite}" />
 						</tr>
@@ -67,8 +67,8 @@
 					<button class="btn btn-lg btn-primary btn-default">Valider
 						la commande</button>
 				</a> <span class="alert alert-success pull-right"
-					style="margin-right: 10px">Coût de la commande : <fmt:formatNumber
-						type='number' maxFractionDigits='2' value='${total}' /></span>
+					style="margin-right: 10px">CoÃ»t de la commande : <fmt:formatNumber
+						type='currency' maxFractionDigits='2' value='${total}' currencySymbol="&euro;" /></span>
 			</div>
 		</c:otherwise>
 	</c:choose>

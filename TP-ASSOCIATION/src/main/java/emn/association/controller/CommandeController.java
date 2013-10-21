@@ -46,7 +46,8 @@ public class CommandeController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		this.process(request, response);
 	}
 
@@ -54,7 +55,8 @@ public class CommandeController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		this.process(request, response);
 	}
 
@@ -62,42 +64,58 @@ public class CommandeController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArticlePersistence serviceArticle = PersistenceServiceProvider.getService(ArticlePersistence.class);
+	protected void process(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		ArticlePersistence serviceArticle = PersistenceServiceProvider
+				.getService(ArticlePersistence.class);
 		RequestDispatcher rd;
-		rd = getServletContext().getRequestDispatcher(ConstantesUtils.PATH_TO_COMMAND);
+		rd = getServletContext().getRequestDispatcher(
+				ConstantesUtils.PATH_TO_COMMAND);
 		HttpSession session = request.getSession();
+
+		session.setAttribute(ConstantesUtils.ATTRIBUT_COMMANDE_KO, "");
 
 		// Mise à jour commande
 		int quantite = 0;
-		if (request.getParameter(ConstantesUtils.ATTRIBUT_QUANTITE) != null && !request.getParameter(ConstantesUtils.ATTRIBUT_QUANTITE).isEmpty()) {
-			quantite = Integer.parseInt(request.getParameter(ConstantesUtils.ATTRIBUT_QUANTITE));
+		if (request.getParameter(ConstantesUtils.ATTRIBUT_QUANTITE) != null
+				&& !request.getParameter(ConstantesUtils.ATTRIBUT_QUANTITE)
+						.isEmpty()) {
+			quantite = Integer.parseInt(request
+					.getParameter(ConstantesUtils.ATTRIBUT_QUANTITE));
 		}
-		System.out.println("quantite désirée :" + quantite);
 
-		// Mise à jour commande
-		String id = request.getParameter(ConstantesUtils.ATTRIBUT_CODE_ARTICLE);
-		if (id != null && !id.isEmpty()) {
-			Article nouvArt = serviceArticle.load(request.getParameter(ConstantesUtils.ATTRIBUT_CODE_ARTICLE));
+		if (quantite > 0) {
+			// Mise à jour commande
+			String id = request
+					.getParameter(ConstantesUtils.ATTRIBUT_CODE_ARTICLE);
+			if (id != null && !id.isEmpty()) {
+				Article nouvArt = serviceArticle.load(request
+						.getParameter(ConstantesUtils.ATTRIBUT_CODE_ARTICLE));
 
-			ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
-			panier = (ArrayList<ArticlePanier>) session.getAttribute(ConstantesUtils.ATTRIBUT_PANIER);
-			if (panier != null) {
-				// Si le panier est déjà créé on le met à jour
-				serviceCommande.miseAJourPanier(panier, nouvArt, quantite);
-			} else {
-				// On crée le panier en lui ajoutant l'article
-				panier = new ArrayList<ArticlePanier>();
-				panier.add(new ArticlePanier(nouvArt, quantite));
-				session.setAttribute(ConstantesUtils.ATTRIBUT_PANIER, panier);
+				ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
+				panier = (ArrayList<ArticlePanier>) session
+						.getAttribute(ConstantesUtils.ATTRIBUT_PANIER);
+				if (panier != null) {
+					// Si le panier est déjà créé on le met à jour
+					serviceCommande.miseAJourPanier(panier, nouvArt, quantite);
+				} else {
+					// On crée le panier en lui ajoutant l'article
+					panier = new ArrayList<ArticlePanier>();
+					panier.add(new ArticlePanier(nouvArt, quantite));
+					session.setAttribute(ConstantesUtils.ATTRIBUT_PANIER,
+							panier);
+				}
 			}
 		}
 
 		// Annulation de commande
-		String estAnnuleCommande = request.getParameter(ConstantesUtils.ATTRIBUT_ANNULER_COMMANDE);
-		if (estAnnuleCommande != null && ConstantesUtils.TRUE.equals(estAnnuleCommande)) {
+		String estAnnuleCommande = request
+				.getParameter(ConstantesUtils.ATTRIBUT_ANNULER_COMMANDE);
+		if (estAnnuleCommande != null
+				&& ConstantesUtils.TRUE.equals(estAnnuleCommande)) {
 			ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
-			panier = (ArrayList<ArticlePanier>) session.getAttribute(ConstantesUtils.ATTRIBUT_PANIER);
+			panier = (ArrayList<ArticlePanier>) session
+					.getAttribute(ConstantesUtils.ATTRIBUT_PANIER);
 			if (panier != null) {
 				// Si le panier existe, on le vide
 				serviceCommande.suppressionPanier(panier);
@@ -105,19 +123,25 @@ public class CommandeController extends HttpServlet {
 		}
 
 		// Validation de commande
-		String estValideCommande = request.getParameter(ConstantesUtils.ATTRIBUT_VALIDER);
-		if (estValideCommande != null && ConstantesUtils.TRUE.equals(estValideCommande)) {
+		String estValideCommande = request
+				.getParameter(ConstantesUtils.ATTRIBUT_VALIDER);
+		if (estValideCommande != null
+				&& ConstantesUtils.TRUE.equals(estValideCommande)) {
 			ArrayList<ArticlePanier> panier = new ArrayList<ArticlePanier>();
-			panier = (ArrayList<ArticlePanier>) session.getAttribute(ConstantesUtils.ATTRIBUT_PANIER);
+			panier = (ArrayList<ArticlePanier>) session
+					.getAttribute(ConstantesUtils.ATTRIBUT_PANIER);
 			if (panier != null) {
 				// Si le panier existe, on le vide
 				if (!serviceCommande.effectuerAchat(panier)) {
-					session.setAttribute(ConstantesUtils.ATTRIBUT_COMMANDE_KO, MessageUtils.COMMANDE_IMPOSSIBLE);
+					session.setAttribute(ConstantesUtils.ATTRIBUT_COMMANDE_KO,
+							MessageUtils.COMMANDE_IMPOSSIBLE);
 					rd.forward(request, response);
 				} else {
 					// Redirection
-					response.sendRedirect(getServletContext().getContextPath() + ConstantesUtils.PATH_TO_MERCI_REDIRECT);
-					session.setAttribute(ConstantesUtils.ATTRIBUT_COMMANDE_KO, "");
+					response.sendRedirect(getServletContext().getContextPath()
+							+ ConstantesUtils.PATH_TO_MERCI_REDIRECT);
+					session.setAttribute(ConstantesUtils.ATTRIBUT_COMMANDE_KO,
+							"");
 				}
 			}
 		} else {
