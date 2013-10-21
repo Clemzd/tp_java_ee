@@ -10,7 +10,7 @@
 	<h1>Merci d'avoir commandé sur le site de l'association !</h1>
 	<div class="nav nav-pills nav-stacked">
 		<ul>
-			<li><a href="Accueil"> Cliquez ici pour revenir à l'écran d'acceuil. </a></li>
+			<li><a href="Accueil"> Cliquez ici pour revenir à l'écran d'accueil. </a></li>
 		</ul>
 	</div>
 </body>
