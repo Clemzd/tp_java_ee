@@ -41,10 +41,8 @@ public class InterditFilter implements Filter {
 		HttpServletRequest requete = (HttpServletRequest) request;
 		HttpSession session = requete.getSession();
 		if (session.getAttribute(ConstantesUtils.ATTRIBUT_ADHERENT) == null) {
-			System.out.println("interdit");
 			request.getRequestDispatcher(ConstantesUtils.PATH_TO_LOGIN_REDIRECT).forward(request, response);
 		} else {
-			System.out.println("autorisé");
 			chain.doFilter(request, response);
 		}
 	}
