@@ -42,7 +42,7 @@ public class LoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 		String deco = request.getParameter(ConstantesUtils.ATTRIBUT_DECONNECTION);
 		if(deco!= null && ConstantesUtils.TRUE.equals(deco)){
-			session.removeAttribute(ConstantesUtils.ATTRIBUT_ADHERENT);
+			session.invalidate();
 		}
 	}
 
