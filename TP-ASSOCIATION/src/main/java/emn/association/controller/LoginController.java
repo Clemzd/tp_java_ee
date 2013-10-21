@@ -38,6 +38,12 @@ public class LoginController extends HttpServlet {
 		RequestDispatcher rd;
 		rd = getServletContext().getRequestDispatcher(ConstantesUtils.PATH_TO_LOGIN);
 		rd.forward(request, response);
+
+		HttpSession session = request.getSession();
+		String deco = request.getParameter(ConstantesUtils.ATTRIBUT_DECONNECTION);
+		if(deco!= null && ConstantesUtils.TRUE.equals(deco)){
+			session.removeAttribute(ConstantesUtils.ATTRIBUT_ADHERENT);
+		}
 	}
 
 	/**
@@ -52,7 +58,7 @@ public class LoginController extends HttpServlet {
 		String id = request.getParameter(ConstantesUtils.ATTRIBUT_ID);
 		String mdp = request.getParameter(ConstantesUtils.ATTRIBUT_PWD);
 		String deco = request.getParameter(ConstantesUtils.ATTRIBUT_DECONNECTION);
-		
+
 		if(deco!= null && ConstantesUtils.TRUE.equals(deco)){
 			session.removeAttribute(ConstantesUtils.ATTRIBUT_ADHERENT);
 		}
