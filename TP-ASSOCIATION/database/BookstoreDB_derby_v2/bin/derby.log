@@ -1,21 +1,7 @@
-Fri Oct 11 17:01:12 CEST 2013 : Apache Derby Serveur réseau - 10.9.1.0 - (1344872) démarré et prêt à accepter les connexions sur le port 1527
+Mon Oct 21 16:56:07 CEST 2013 : Apache Derby Serveur réseau - 10.9.1.0 - (1344872) démarré et prêt à accepter les connexions sur le port 1527
 ----------------------------------------------------------------
-Fri Oct 11 17:01:22 CEST 2013:
-Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872) : instance a816c00e-0141-a809-202f-ffffb925d7fd 
-dans le répertoire de base de données C:\Users\Clément\git\tp_java_ee\TP-ASSOCIATION\database\BookstoreDB_derby_v2\bin\association  avec le chargeur de classe sun.misc.Launcher$AppClassLoader@76bcfa38
-
-java.vendor=Oracle Corporation
-java.runtime.version=1.7.0_40-b43
-user.dir=C:\Users\Clément\git\tp_java_ee\TP-ASSOCIATION\database\BookstoreDB_derby_v2\bin
-derby.system.home=C:\Users\Clément\git\tp_java_ee\TP-ASSOCIATION\database\BookstoreDB_derby_v2\bin
-Chargeur de classe de la base de données démarré - derby.database.classpath=''
-----------------------------------------------------------------
-Fri Oct 11 18:47:10 CEST 2013:
-Fermeture de l'instance a816c00e-0141-a809-202f-ffffb925d7fd sur le répertoire de base de données C:\Users\Clément\git\tp_java_ee\TP-ASSOCIATION\database\BookstoreDB_derby_v2\bin\association avec le chargeur de classe sun.misc.Launcher$AppClassLoader@76bcfa38
-Fri Oct 11 18:47:10 CEST 2013 Thread[DRDAConnThread_13,5,main] (DATABASE = association), (DRDAID = {25}), Arrêt de la base de données 'association'.
-----------------------------------------------------------------
-Fri Oct 11 19:03:07 CEST 2013:
-Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872) : instance 3a91661a-0141-a809-202f-ffffb925d7fd 
+Mon Oct 21 16:56:22 CEST 2013:
+Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.9.1.0 - (1344872) : instance a816c00e-0141-db84-0e6b-ffffb925d7fd 
 dans le répertoire de base de données C:\Users\Clément\git\tp_java_ee\TP-ASSOCIATION\database\BookstoreDB_derby_v2\bin\association  avec le chargeur de classe sun.misc.Launcher$AppClassLoader@76bcfa38
 
 java.vendor=Oracle Corporation

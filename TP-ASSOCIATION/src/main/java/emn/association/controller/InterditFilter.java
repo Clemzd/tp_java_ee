@@ -17,7 +17,7 @@ import emn.association.utils.ConstantesUtils;
 /**
  * Servlet Filter implementation class NonConnecteFilter
  */
-@WebFilter(urlPatterns={"/Accueil","/Catalogue","/Commande","/Merci"})
+@WebFilter("/*")
 public class InterditFilter implements Filter {
 
 	/**
@@ -40,9 +40,18 @@ public class InterditFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest requete = (HttpServletRequest) request;
 		HttpSession session = requete.getSession();
+		System.out.println(requete.getRequestURI());
+		
+		/* Ressources statiques */
+        String chemin = requete.getRequestURI().substring( requete.getContextPath().length() );
+        if ( chemin.startsWith("/css") || chemin.startsWith(ConstantesUtils.PATH_TO_CREATION_COMPTE)) {
+            chain.doFilter( request, response );
+            return;
+        }
+  
 		if (session.getAttribute(ConstantesUtils.ATTRIBUT_ADHERENT) == null) {
 			request.getRequestDispatcher(ConstantesUtils.PATH_TO_LOGIN_REDIRECT).forward(request, response);
-		} else {
+		} else{
 			chain.doFilter(request, response);
 		}
 	}
