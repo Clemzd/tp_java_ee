@@ -9,10 +9,19 @@ import emn.association.mock.AdherentMock;
 import emn.association.services.impl.LoginService;
 import emn.association.services.interfaces.ILoginService;
 
+/**
+ * 
+ * @author Benjamin
+ *
+ */
 public class LoginServiceTest {
 	
 	private static ILoginService service;
 	
+	/**
+	 * Recupere le service pour login 
+	 * @return
+	 */
 	private ILoginService getService() {
 		if (service == null) {
 			service = new LoginService();

@@ -95,48 +95,6 @@ public class CommandeTest {
 		affichageContenuPanier(panier);
 	}
 	
-	/*
-	@Test
-	public void testValiderCommande() {
-		System.out.println("\n ----- "  );
-		System.out.println("Test service Commande : Valider commande " );
-		
-		CommandeService serviceCommande = new CommandeService();
-		
-		List<ArticlePanier> panier = new ArrayList<ArticlePanier>();
-				
-		// Création d'un premier article de panier
-		ArticleMock mock1 = new ArticleMock();
-		//Ajout de deux articles
-		Article article1 = mock1.createInstance();
-		int stockInitialArt1 = article1.getStock();
-		Article article2 = mock1.createInstance();
-		int stockInitialArt2 = article2.getStock();
-		
-		System.out.println("----- "  );
-		
-		System.out.println("\n Panier constitué de deux articles : " );
-		serviceCommande.miseAJourPanier(panier, article1 );
-		serviceCommande.miseAJourPanier(panier, article2 );
-		affichageContenuPanier(panier);
-		int qttAcheteArt1 = panier.get(0).getQuantite();
-		int qttAcheteArt2 = panier.get(1).getQuantite();
-		
-		//Validation de commande
-		System.out.println("\n On valide la commande "  );
-		boolean commandeEffectue = serviceCommande.effectuerAchat(panier);
-		assertTrue(commandeEffectue);
-		System.out.println("\n Le panier a été vidé."  );
-		affichageContenuPanier(panier);
-		
-		assertEquals(stockInitialArt1-qttAcheteArt1, article1.getStock());
-		assertEquals(stockInitialArt2-qttAcheteArt2, article1.getStock());
-		System.out.println("\n Le stock a été décrémenté."  );
-		
-		System.out.println("\n La commande a bien été effectuée."  );
-	}
-	*/
-	
 	/**
 	 * affiche dans la console le contenu du panier
 	 * @param panier
