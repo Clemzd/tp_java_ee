@@ -70,26 +70,4 @@ public class LoginServiceTest {
 		System.out.println(" Champs non valide ?");
 		assertFalse(login.champsValide("", ""));
 	}
-
-	@Test
-	public void testRecupAdherent() {
-		ILoginService login = getService();
-
-		// Dans la base il y a :
-		// id : Loufoks
-		// mdp: benjamin
-		System.out.println("Utilisateur Loufoks existe ?");
-		assertNotNull(login.getAdherentFromId("Loufoks"));
-	}
-
-	@Test
-	public void testRecupAdherentInconnu() {
-		ILoginService login = getService();
-
-		// Dans la base il y a :
-		// id : Loufoks
-		// mdp: benjamin
-		System.out.println("Utilisateur Fake existe pas ?");
-		assertNull(login.getAdherentFromId("Fake"));
-	}
 }
