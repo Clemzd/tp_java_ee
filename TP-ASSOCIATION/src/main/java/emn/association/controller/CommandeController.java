@@ -70,7 +70,7 @@ public class CommandeController extends HttpServlet {
 
 		// Mise à jour commande
 		int quantite = 0;
-		if (request.getParameter(ConstantesUtils.ATTRIBUT_QUANTITE) != null) {
+		if (request.getParameter(ConstantesUtils.ATTRIBUT_QUANTITE) != null && !request.getParameter(ConstantesUtils.ATTRIBUT_QUANTITE).isEmpty()) {
 			quantite = Integer.parseInt(request.getParameter(ConstantesUtils.ATTRIBUT_QUANTITE));
 		}
 		System.out.println("quantite désirée :" + quantite);

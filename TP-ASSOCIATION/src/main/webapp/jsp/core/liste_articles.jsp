@@ -40,8 +40,20 @@
 								<option value="${compteur }">${compteur }</option>
 							</c:forEach>
 					</select></td>
-					<td><a id="lienCommande${status.index}" onclick="ChangeLink(${status.index})" 
-					href="Commande?article.code=${article.code }&quantite=">Commander</a></td>
+					<td>
+						<c:choose>
+							<c:when test="${article.stock > 0}">
+							<a id="lienCommande${status.index}" onclick="ChangeLink(${status.index})" 
+							href="Commande?article.code=${article.code }&quantite=">Commander</a>
+							</c:when>
+							<c:otherwise>
+								<span style="text-color:red">Rupture de stock</span>
+							</c:otherwise>
+						</c:choose>
+						
+						
+						
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
